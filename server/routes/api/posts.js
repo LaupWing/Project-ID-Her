@@ -27,10 +27,10 @@ router.delete('/:id', async (req,res)=>{
 })
 
 async function loadPostCollection(){
-    const client = await mongodb.MongoClient.connect('mongodb://abc123:abc123@ds137464.mlab.com:37464/vue_express',{
+    const client = await mongodb.MongoClient.connect('mongodb://abc123:abc123@ds143614.mlab.com:43614/cad_database',{
         useNewUrlParser: true
     })
-    return client.db('vue_express').collection('posts');
+    return client.db('cad_database').collection('posts');
 }
 
 
