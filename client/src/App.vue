@@ -185,4 +185,20 @@ svg > path{
   to {transform: translate(200vw, 0);}
 }
 
+.fadeAway{
+    animation: fadingAway 1s forwards;
+}
+@keyframes fadingAway{
+  from {transform: translate(0, 0);}
+  to {transform: translate(300px, 0); opacity: 0;}
+}
+
+.fadeIn{
+    animation: fadingIn 1s forwards;
+}
+@keyframes fadingIn{
+  from {transform: translate(-300px, 0); opacity: 0}
+  to {transform: translate(0, 0); opacity: 1;}
+}
+
 </style>

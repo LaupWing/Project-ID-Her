@@ -7,11 +7,13 @@
         />
         <leeftijd-afkomst 
             v-bind:userInfo="userInfo" 
-            v-on:nextInput="nextInput" 
+            v-on:nextInput="nextInput"
+            v-on:inputUser="inputUser" 
             v-if="leeftijdAfkomstShow"
         />
         <adres 
             v-if="woonplaatsShow"
+            v-on:nextInput="nextInput"
         />
     </div>
 </template>
@@ -35,7 +37,11 @@ export default {
             woonplaatsShow: false,
             veiligheidShow: false,
             userInfo:{
-                geslacht:''
+                geslacht:'',
+                woonplaats: '',
+                leeftijd:'',
+                afkomst:'',
+                veiligheidsGevoel: '',
             }
         }
     },
@@ -60,6 +66,14 @@ export default {
         inputUser(prop, value){
             switch(prop){
                 case 'geslacht': this.userInfo.geslacht = value
+                                 break;
+                case 'woonplaats': this.userInfo.woonplaats = value
+                                 break;
+                case 'veiligheidsGevoel': this.userInfo.veiligheidsGevoel = value
+                                 break;
+                case 'leeftijd': this.userInfo.leeftijd = value
+                                 break;
+                case 'afkomst': this.userInfo.afkomst = value
                                  break;
             }
             console.log(this.userInfo)

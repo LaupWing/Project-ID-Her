@@ -58,7 +58,6 @@ export default {
             this.toggleAfkomst()
         },
         toggleAfkomst(){
-            console.log(this.userInfo)
             this.afkomstSelect = !this.afkomstSelect;
             // this.changeAvatar()
         },
@@ -129,6 +128,8 @@ export default {
             this.$el.querySelector('.wrapper').classList.add("slidingOutTop")
             this.$el.querySelector('.buttons').classList.add("slidingOutTop")
             this.$el.querySelector('.next').classList.add("slidingOutTop")
+            this.$emit('inputUser', 'afkomst', this.afkomst)
+            this.$emit('inputUser', 'leeftijd', this.leeftijd)
             this.$emit('nextInput')
         }
     }
@@ -243,22 +244,6 @@ button:hover{
     background: #bf975a;
     color: #023274;
 }
-.fadeAway{
-    animation: fadingAway 1s forwards;
-}
-@keyframes fadingAway{
-  from {transform: translate(0, 0);}
-  to {transform: translate(300px, 0); opacity: 0;}
-}
-
-.fadeIn{
-    animation: fadingIn 1s forwards;
-}
-@keyframes fadingIn{
-  from {transform: translate(-300px, 0); opacity: 0}
-  to {transform: translate(0, 0); opacity: 1;}
-}
-
 
 
 
