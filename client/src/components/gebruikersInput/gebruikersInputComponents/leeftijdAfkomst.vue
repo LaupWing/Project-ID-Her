@@ -24,12 +24,16 @@
                 </div>
             </div>
             <div class="leeftijd">	
-            <p v-if="leeftijd == ''">Gebruik de slider om je leeftijd aan te geven!</p>
-            <h3 v-if="leeftijd !== ''">Leeftijd: {{leeftijd}}</h3>
+            <p 
+                v-if="leeftijd == ''">Gebruik de slider om je leeftijd aan te geven!</p>
+            <h3 
+                v-if="leeftijd !== ''">Leeftijd: {{leeftijd}}</h3>
             <input @change="sliderAge" class="slider" type="range" min="12" max="80" value="1">
             </div>
         </div>
-        <button @click="nextInput" :class="['next', ((afkomst == '') && (leeftijd == '')) ? 'disabled' : '']">>></button>
+        <button 
+            @click="nextInput" 
+            :class="['next', ((afkomst == '') && (leeftijd == '')) ? 'disabled' : '']">>></button>
     </div>
 </template>
 <script>

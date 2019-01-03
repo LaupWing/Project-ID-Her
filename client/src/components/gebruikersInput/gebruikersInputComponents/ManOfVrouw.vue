@@ -21,9 +21,9 @@
     </svg>
     </div>
     <div class="buttons">
-        <button @click="keuze">Man</button>
-        <button @click="keuze">Vrouw</button>
-        <button @click="nextInput"  class="next disabled">>></button>
+        <button class="button2" @click="keuze">Man</button>
+        <button class="button2" @click="keuze">Vrouw</button>
+        <button  @click="nextInput"  class="button2 next disabled">>></button>
     </div>
 </div>
 </template>
@@ -107,10 +107,10 @@ button{
     margin-top: 30px;
     animation: slideIn 4s forwards;
 }
-button:hover{
+/* .button2:hover{
     background: #bf975a;
     color: #023274;
-}
+} */
 svg{
     width: 700px;
 }

@@ -1,8 +1,18 @@
 <template>
     <div>
-        <man-of-vrouw v-if="geslachtShow" v-on:nextInput="nextInput" v-on:inputUser="inputUser"/>
-        <leeftijd-afkomst v-bind:userInfo="userInfo" v-on:nextInput="nextInput" v-if="leeftijdAfkomstShow"/>
-        <adres v-if="woonplaatsShow"/>
+        <man-of-vrouw 
+            v-if="geslachtShow" 
+            v-on:nextInput="nextInput" 
+            v-on:inputUser="inputUser"
+        />
+        <leeftijd-afkomst 
+            v-bind:userInfo="userInfo" 
+            v-on:nextInput="nextInput" 
+            v-if="leeftijdAfkomstShow"
+        />
+        <adres 
+            v-if="woonplaatsShow"
+        />
     </div>
 </template>
 <script>

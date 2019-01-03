@@ -90,6 +90,10 @@ button{
 button:hover{
   background: #023274;
 }
+.button2:hover{
+    background: #bf975a;
+    color: #023274;
+}
 .clicked{
 	background: #bf975a;
    color: #023274;
@@ -105,6 +109,13 @@ button.disabled:hover{
 	opacity: .5;
 	color: #bf975a;
 }
+
+/* Styling States */
+.invisible{
+  opacity: 0;
+}
+
+
 
 /* Globale input styling */
 label{
