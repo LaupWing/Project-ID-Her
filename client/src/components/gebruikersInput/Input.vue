@@ -2,24 +2,27 @@
     <div>
         <man-of-vrouw v-if="geslachtShow" v-on:nextInput="nextInput" v-on:inputUser="inputUser"/>
         <leeftijd-afkomst v-bind:userInfo="userInfo" v-on:nextInput="nextInput" v-if="leeftijdAfkomstShow"/>
+        <adres v-if="woonplaatsShow"/>
     </div>
 </template>
 <script>
 import ManOfVrouw from './gebruikersInputComponents/ManOfVrouw.vue'
 import LeeftijdAfkomst from './gebruikersInputComponents/leeftijdAfkomst.vue'
+import Adres from './gebruikersInputComponents/Adres.vue'
 
 export default {
     name: 'Input',
     components:{
         ManOfVrouw,
-        LeeftijdAfkomst
+        LeeftijdAfkomst,
+        Adres
     },
     data(){
         return{
             vragenBeantwoord: 0,
             geslachtShow: true,
             leeftijdAfkomstShow: false,
-            woonplaatShow: false,
+            woonplaatsShow: false,
             veiligheidShow: false,
             userInfo:{
                 geslacht:''
@@ -35,10 +38,10 @@ export default {
                     case 1: this.leeftijdAfkomstShow = true
                             this.geslachtShow = false
                             break;
-                    case 2: this.woonplaatShow = true
+                    case 2: this.woonplaatsShow = true
                             this.leeftijdAfkomstShow = false
                             break;
-                    case 3: this.woonplaatShow = false
+                    case 3: this.woonplaatsShow = false
                             this.veiligheidShow = true
                             break;
                 }

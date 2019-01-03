@@ -117,7 +117,9 @@ select{
 	border-radius: 10px;
 	outline: none;
 }
-
+svg > path{
+  transition: .25s;
+}
 /* Scrollbar */
 /* width */
 ::-webkit-scrollbar {
