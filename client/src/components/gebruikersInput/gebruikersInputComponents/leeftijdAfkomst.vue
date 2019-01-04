@@ -102,13 +102,14 @@ export default {
         },
         changeImgUrl(){
             const currentAvatar = this.avatar
+            console.log(this.userInfo.geslacht)
              setTimeout(()=>{
                 if(this.leeftijd < 20){
-                   this.avatar = 'jonge-vrouw.png' 
+                   this.avatar = `${this.userInfo.geslacht}/jong.png`
                  }else if(this.leeftijd >= 20 && this.leeftijd <= 40){
-                   this.avatar = 'volwassen-vrouw.png'
+                   this.avatar = `${this.userInfo.geslacht}/volwassen.png`
                  }else{
-                   this.avatar = 'ouwe-vrouw.png'
+                   this.avatar = `${this.userInfo.geslacht}/oud.png`
                  }
                    this.$el.querySelector('img').classList.add("fadeIn")
                    this.removeImgClasses()
