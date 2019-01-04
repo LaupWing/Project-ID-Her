@@ -74,9 +74,9 @@ export default {
            }
         },
         categorie(leeftijd){
-            if(leeftijd < 20){
+            if(leeftijd < 28){
                 return 'jong'
-            }else if(leeftijd >= 20 && leeftijd <= 40){
+            }else if(leeftijd >= 28 && leeftijd <= 60){
                 return 'volwassen'
             }else{
                 return 'oud'
@@ -85,7 +85,6 @@ export default {
         changeAvatar(){
             if(this.afkomst !== '' && this.leeftijd !== ''){
                 this.checkLeeftijdCategorie()
-                console.log(this.vorigeLeeftijd, this.leeftijd)
             }
         },
         transitionAvatar(){
@@ -102,11 +101,10 @@ export default {
         },
         changeImgUrl(){
             const currentAvatar = this.avatar
-            console.log(this.userInfo.geslacht)
              setTimeout(()=>{
-                if(this.leeftijd < 20){
+                if(this.leeftijd < 28){
                    this.avatar = `${this.userInfo.geslacht}/jong.png`
-                 }else if(this.leeftijd >= 20 && this.leeftijd <= 40){
+                 }else if(this.leeftijd >= 28 && this.leeftijd <= 60){
                    this.avatar = `${this.userInfo.geslacht}/volwassen.png`
                  }else{
                    this.avatar = `${this.userInfo.geslacht}/oud.png`

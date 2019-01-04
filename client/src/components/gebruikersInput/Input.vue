@@ -16,19 +16,24 @@
             v-on:nextInput="nextInput"
             v-on:inputUser="inputUser" 
         />
+        <veilig
+            v-if="veiligheidShow"        
+        />
     </div>
 </template>
 <script>
 import ManOfVrouw from './gebruikersInputComponents/ManOfVrouw.vue'
 import LeeftijdAfkomst from './gebruikersInputComponents/leeftijdAfkomst.vue'
 import Adres from './gebruikersInputComponents/Adres.vue'
+import Veilig from './gebruikersInputComponents/Veiligheid.vue'
 
 export default {
     name: 'Input',
     components:{
         ManOfVrouw,
         LeeftijdAfkomst,
-        Adres
+        Adres,
+        Veilig
     },
     data(){
         return{

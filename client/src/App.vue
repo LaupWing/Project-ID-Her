@@ -197,8 +197,11 @@ svg > path{
     animation: fadingIn 1s forwards;
 }
 @keyframes fadingIn{
-  from {transform: translate(-300px, 0); opacity: 0}
-  to {transform: translate(0, 0); opacity: 1;}
+  0% {transform: translate(-300px, 0); opacity: 0}
+  25% {opacity: 0}
+  50% {opacity: 1}
+  75% {opacity: 1}
+  100% {transform: translate(0, 0); opacity: 1;}
 }
 
 </style>
