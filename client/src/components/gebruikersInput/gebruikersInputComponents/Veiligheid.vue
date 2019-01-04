@@ -5,12 +5,33 @@
         </div>
         <div class="paspoort">
             <div class="paspoort-logo flexCenter">Paspoort</div>
+            <!-- <img src="../../../assets/Avatar/man/jong.png" alt=""> -->
+            <img v-bind:src="imgUrl()" alt="">
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    name:'veiligheid',
+    props:['userInfo'],
+    data(){
+        return{
+            avatarPath: this.userInfo.avatarPath,
+            leeftijd: this.userInfo.leeftijd,
+            woonplaats: this.userInfo.woonplaats,
+            geslacht: this.userInfo.geslacht,
+            afkomst: this.userInfo.afkomst,
+            veiligheidsGevoel: 0
+        }
+    },
+    methods:{
+        imgUrl(){
+            return require(`../../../assets/Avatar/${this.avatarPath}`)
+        },
+    },
+    beforeMount(){
+        console.log(this.avatarPath)
+    }
 }
 </script>
 <style scoped>
@@ -34,6 +55,12 @@ export default {
 }
 .tekst{
     margin-bottom: 50px;
+}
+img{
+    width: 180px;
+    position: absolute;
+    left: 20px;
+    top: 70px;
 }
 </style>
 

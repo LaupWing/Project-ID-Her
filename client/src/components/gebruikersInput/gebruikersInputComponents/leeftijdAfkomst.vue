@@ -44,6 +44,7 @@ export default {
         return{
             afkomst: '',
             avatar: 'onbekend.png',
+            avatarPath: '',
             leeftijd: '',
             vorigeLeeftijd: '',
             afkomstSelect: false,
@@ -104,10 +105,13 @@ export default {
              setTimeout(()=>{
                 if(this.leeftijd < 28){
                    this.avatar = `${this.userInfo.geslacht}/jong.png`
+                   this.avatarPath = `${this.userInfo.geslacht}/jong.png`
                  }else if(this.leeftijd >= 28 && this.leeftijd <= 60){
                    this.avatar = `${this.userInfo.geslacht}/volwassen.png`
+                   this.avatarPath = `${this.userInfo.geslacht}/volwassen.png`
                  }else{
                    this.avatar = `${this.userInfo.geslacht}/oud.png`
+                   this.avatarPath = `${this.userInfo.geslacht}/oud.png`
                  }
                    this.$el.querySelector('img').classList.add("fadeIn")
                    this.removeImgClasses()
@@ -129,6 +133,7 @@ export default {
             this.$el.querySelector('.next').classList.add("slidingOutTop")
             this.$emit('inputUser', 'afkomst', this.afkomst)
             this.$emit('inputUser', 'leeftijd', this.leeftijd)
+            this.$emit('inputUser', 'avatarPath', this.avatarPath)
             this.$emit('nextInput')
         }
     }

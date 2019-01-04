@@ -17,7 +17,8 @@
             v-on:inputUser="inputUser" 
         />
         <veilig
-            v-if="veiligheidShow"        
+            v-if="veiligheidShow"
+            v-bind:userInfo="userInfo"        
         />
     </div>
 </template>
@@ -45,6 +46,7 @@ export default {
             userInfo:{
                 geslacht:'',
                 woonplaats: '',
+                avatarPath: '',
                 leeftijd:'',
                 afkomst:'',
                 veiligheidsGevoel: '',
@@ -80,6 +82,8 @@ export default {
                 case 'leeftijd': this.userInfo.leeftijd = value
                                  break;
                 case 'afkomst': this.userInfo.afkomst = value
+                                 break;
+                case 'avatarPath': this.userInfo.avatarPath = value
                                  break;
             }
             console.log(this.userInfo)
