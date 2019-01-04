@@ -16,13 +16,17 @@
                 {{afkomst}}
                 <p class="label">Woonplaats</p>
                 {{woonplaats}}
-                <p class="label">Gemaakt op</p>
-                {{gemaakt.getDate()}}/{{gemaakt.getMonth()}}/{{gemaakt.getFullYear()}}
+                <p class="label">Gemaakt op D/M/Y</p>
+                {{gemaakt.getDate()}}/{{gemaakt.getMonth()+1}}/{{gemaakt.getFullYear()}}
                 <p class="label">Leeftijd</p>
                 {{leeftijd}}
                 <p class="label">Geslacht</p>
                 {{geslacht}}
             </div>
+        </div>
+        <p class="onveiligheid">Onveiligheidsgevoel = {{veiligheidsGevoel}}/10</p>
+        <div class="sliderBorder">
+         <input @change="handleChange" class="slider" type="range" min="1" max="10" v-model="veiligheidsGevoel">
         </div>
     </div>
 </template>
@@ -37,17 +41,73 @@ export default {
             woonplaats: this.userInfo.woonplaats,
             geslacht: this.userInfo.geslacht,
             afkomst: this.userInfo.afkomst,
-            veiligheidsGevoel: 0,
-            gemaakt: new Date()
+            veiligheidsGevoel: 1,
+            gemaakt: new Date(),
+            kleur:[
+                {
+                    onveilig:1,
+                    color: 'one'
+                },
+                {
+                    onveilig:2,
+                    color: 'two'
+                },
+                {
+                    onveilig:3,
+                    color: 'three'
+                },
+                {
+                    onveilig:4,
+                    color: 'four'
+                },
+                {
+                    onveilig:5,
+                    color: 'five'
+                },
+                {
+                    onveilig:6,
+                    color: 'six'
+                },
+                {
+                    onveilig:7,
+                    color: 'seven'
+                },
+                {
+                    onveilig:8,
+                    color: 'eight'
+                },
+                {
+                    onveilig:9,
+                    color: 'nine'
+                },
+                {
+                    onveilig:10,
+                    color: 'ten'
+                },
+            ],
+            colorCode: 'rgba(9, 123, 0,.6)'
         }
     },
     methods:{
         imgUrl(){
             return require(`../../../assets/Avatar/${this.avatarPath}`)
         },
-    },
-    beforeMount(){
-        console.log(this.gemaakt)
+        handleChange(){
+            this.kleur.forEach((i)=>{
+                if(i.onveilig == this.veiligheidsGevoel){
+                    // console.log(this.$el.querySelector('.img-container').classList)
+                    this.$el.querySelector('.img-container').classList.forEach((c)=>{
+                        if(c!=='img-container'){
+                            this.$el.querySelector('.img-container').classList.remove(c)
+                        }
+                    })
+                    this.$el.querySelector('.img-container').classList.add(i.color)
+                }
+            })
+        },
+        removeClasses(array){
+            // array.forEach(())
+        }
     }
 }
 </script>
@@ -55,7 +115,8 @@ export default {
 .paspoort{
     width: 600px;
     height: 350px;
-    background: radial-gradient(circle farthest-side, #ddf2d1,#D0D8E0);
+    /* background: radial-gradient(circle farthest-side, #ddf2d1,#D0D8E0); */
+    background: radial-gradient(circle farthest-side, #ddf2d1,rgba(9, 123, 0,.6));
     border-radius: 10px;
     position: relative;
     box-shadow: 15px 14px 5px 1px rgba(0,0,0,0.3);
@@ -84,6 +145,7 @@ img{
     left: 20px;
     top: 60px;
     padding: 5px;
+    transition: .7s;
 }
 .cad{
     top: 17px;
@@ -106,5 +168,94 @@ img{
     padding: 3px;
     font-size: 12px;
 }
+
+.onveiligheid{
+    font-size: 25px;
+    color: white;
+    margin-top: 80px;
+}
+
+
+/* ColorStates */
+.one{
+    background: rgba(9, 123, 0,.6);
+}
+
+.two{
+    background: rgba(41, 107, 0,.6);
+}
+
+.three{
+    background: rgba(9, 123, 0,.6);
+}
+
+.four{
+    background: rgba(9, 123, 0,.6);
+}
+
+.five{
+    background: rgba(9, 123, 0,.6);
+}
+
+.six{
+    background: rgba(9, 123, 0,.6);
+}
+
+.seven{
+    background: rgba(9, 123, 0,.6);
+}
+
+.eight{
+    background: rgba(9, 123, 0,.6);
+}
+
+.nine{
+    background: rgba(9, 123, 0,.6);
+}
+
+.ten{
+    background: rgba(9, 123, 0,.6);
+}
+
+.sliderBorder{
+  bottom: 50px;
+  padding: 5px;
+  border: solid white 5px;
+  border-radius: 40px;
+  margin-top: 100px;
+  position: fixed;
+}
+/* Custom Slider */
+.slider {
+  -webkit-appearance: none;
+  width: 500px;
+  height: 50px;
+  /* background: #d3d3d3; */
+  background-color: transparent;
+  background-image: linear-gradient(to right, green , red);
+  outline: none;
+  opacity: 0.7;
+  margin: 3px 3px 0 3px;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 30px;
+  padding-bottom: 1px;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #bf975a;
+  cursor: pointer;
+}
+
+
 </style>
 
