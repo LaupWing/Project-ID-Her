@@ -14,6 +14,7 @@
         <adres 
             v-if="woonplaatsShow"
             v-on:nextInput="nextInput"
+            v-on:inputUser="inputUser" 
         />
     </div>
 </template>
