@@ -8,7 +8,13 @@
             <p class="cad">Control Alt Delete</p>
             <!-- <img src="../../../assets/Avatar/man/jong.png" alt=""> -->
             <div class="img-container">
-                <img v-bind:src="imgUrl()" alt="">
+                <img class="avatar" v-bind:src="imgUrl()" alt="">
+                <img v-if="gevoelImg === 1" class="gevoel zeer-veilig slideInImg" src="../../../assets/Avatar/gevoel/zeer-veilig.png" alt="">
+                <img v-if="gevoelImg === 2" class="gevoel tevreden slideInImg" src="../../../assets/Avatar/gevoel/tevreden.png" alt="">
+                <img v-if="gevoelImg === 3" class="gevoel neutraal slideInImg" src="../../../assets/Avatar/gevoel/neutraal.png" alt="">
+                <img v-if="gevoelImg === 4" class="gevoel nerveus slideInImg" src="../../../assets/Avatar/gevoel/nerveus.png" alt="">
+                <img v-if="gevoelImg === 5" class="gevoel angstig slideInImg" src="../../../assets/Avatar/gevoel/angstig.png" alt="">
+                <img v-if="gevoelImg === 6" class="gevoel zeer-angstig slideInImg" src="../../../assets/Avatar/gevoel/zeer-angstig.png" alt="">
                 <p class="veiligheid">Onveiligheidsgevoel: {{veiligheidsGevoel}}</p>
             </div>
             <div class="info">
@@ -42,6 +48,7 @@ export default {
             geslacht: this.userInfo.geslacht,
             afkomst: this.userInfo.afkomst,
             veiligheidsGevoel: 1,
+            gevoelImg: 1,
             gemaakt: new Date(),
             kleur:[
                 {
@@ -93,9 +100,9 @@ export default {
             return require(`../../../assets/Avatar/${this.avatarPath}`)
         },
         handleChange(){
+            this.imgTransition()
             this.kleur.forEach((i)=>{
                 if(i.onveilig == this.veiligheidsGevoel){
-                    // console.log(this.$el.querySelector('.img-container').classList)
                     this.$el.querySelector('.img-container').classList.forEach((c)=>{
                         if(c!=='img-container'){
                             this.$el.querySelector('.img-container').classList.remove(c)
@@ -104,6 +111,47 @@ export default {
                     this.$el.querySelector('.img-container').classList.add(i.color)
                 }
             })
+        },
+        imgTransition(){
+            if(this.$el.querySelector('.gevoel').classList.contains('fadeAwayImg')){
+                this.changeGevoel()
+                this.$el.querySelector('.gevoel').classList.add('slideInImg')
+                this.removeTransition()
+            }else{
+                this.$el.querySelector('.gevoel').classList.add('fadeAwayImg')
+                this.restartTransition()
+            }
+        },
+        removeTransition(){
+            setTimeout(()=>{
+                this.$el.querySelector('.gevoel').classList.remove('fadeAwayImg')
+                this.$el.querySelector('.gevoel').classList.remove('slideInImg')
+            },1000)
+        },
+        restartTransition(){
+            setTimeout(()=>{
+                this.imgTransition()
+            },1000)
+        },
+        changeGevoel(){
+            const n = this.veiligheidsGevoel;
+            if(n < 2){
+                this.gevoelImg = 1
+            }else if(n >= 2 && n < 3){
+                this.gevoelImg = 2
+            }
+            else if(n >= 3 && n < 5){
+                this.gevoelImg = 3
+            }
+            else if(n >= 5 && n < 7){
+                this.gevoelImg = 4
+            }
+            else if(n >= 7 && n <= 8){
+                this.gevoelImg = 5
+            }
+            else{
+                this.gevoelImg = 6
+            }
         },
         removeClasses(array){
             // array.forEach(())
@@ -115,8 +163,8 @@ export default {
 .paspoort{
     width: 600px;
     height: 350px;
-    /* background: radial-gradient(circle farthest-side, #ddf2d1,#D0D8E0); */
-    background: radial-gradient(circle farthest-side, #ddf2d1,rgba(9, 123, 0,.6));
+    background: radial-gradient(circle farthest-side, #ddf2d1,#D0D8E0);
+    /* background: radial-gradient(circle farthest-side, #ddf2d1,rgba(9, 123, 0,.6)); */
     border-radius: 10px;
     position: relative;
     box-shadow: 15px 14px 5px 1px rgba(0,0,0,0.3);
@@ -137,7 +185,7 @@ export default {
 .tekst{
     margin-bottom: 50px;
 }
-img{
+img.avatar{
     width: 180px;
     height: 250px;
 }
@@ -174,7 +222,45 @@ img{
     color: white;
     margin-top: 80px;
 }
+/* Gevoel img properties */
+img.nerveus{
+    position: absolute;
+    width: 50px;
+    left: 56px;
+    top: 54px;
+}
+img.angstig{
+    position: absolute;
+    width: 70px;
+    left: 60px;
+    top: 49px;
+}
 
+img.zeer-angstig{
+    position: absolute;
+    width: 90px;
+    left: 56px;
+    top: 50px;
+}
+
+img.tevreden{
+    position: absolute;
+    width: 25px;
+    left: 82px;
+    top: 122px
+}
+img.zeer-veilig{
+    position: absolute;
+    width: 25px;
+    left: 82px;
+    top: 122px
+}
+img.neutraal{
+    position: absolute;
+    width: 25px;
+    left: 82px;
+    top: 122px
+}
 
 /* ColorStates */
 .one{
@@ -186,35 +272,35 @@ img{
 }
 
 .three{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(74, 90, 0,.6)
 }
 
 .four{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(105, 75, 0,.6);
 }
 
 .five{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(125, 65, 0,.6);
 }
 
 .six{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(152, 51, 0,.6);
 }
 
 .seven{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(176, 40, 0,.6);
 }
 
 .eight{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(200, 28, 0,.6);
 }
 
 .nine{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(223, 15, 0,.6);
 }
 
 .ten{
-    background: rgba(9, 123, 0,.6);
+    background: rgba(247, 3, 0,.6);
 }
 
 .sliderBorder{
@@ -254,6 +340,23 @@ img{
   border-radius: 50%;
   background: #bf975a;
   cursor: pointer;
+}
+
+/* Imgfading */
+.fadeAwayImg{
+    animation: fadingAway 1s forwards;
+}
+@keyframes fadingAway{
+  from {transform: translate(0, 0);}
+  to {transform: translate(50px, 0); opacity: 0;}
+}
+
+.slideInImg{
+    animation: slideIn 1s forwards;
+}
+@keyframes slideIn{
+  from {transform: translate(-50px, 0); opacity: 0;}
+  to {transform: translate(0, 0); opacity: 1;}
 }
 
 
