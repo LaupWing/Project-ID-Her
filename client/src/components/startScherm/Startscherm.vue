@@ -6,7 +6,7 @@
 			<h1>Politie Quiz</h1>
 		</div>
 		<button @click="start">START</button>
-    <img class="politie-auto" src="../../assets/politie-auto.png" alt="">
+    <img @click="show" class="politie-auto" src="../../assets/politie-auto.png" alt="">
     <div class="grass"></div>
 	 </div>
 </template>
@@ -30,6 +30,9 @@ export default {
       this.$el.querySelector('.politie-logo').classList.add("slidingOutTop")
       this.$el.querySelector('button').classList.add("slidingOutTop")
       this.$emit('startQuiz')
+    },
+    show(){
+      this.$emit('showDatabase')
     }
   }
 }

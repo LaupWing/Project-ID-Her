@@ -16,6 +16,8 @@ router.post('/', async (req, res)=>{
         woonplaats: req.body.woonplaats,
         veilig: req.body.veilig,
         afkomst: req.body.afkomst,
+        leeftijd: req.body.leeftijd,
+        geslacht: req.body.geslacht,
         gemaakt: new Date()
     });
     res.status(201).send()

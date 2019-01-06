@@ -18,7 +18,9 @@
         />
         <veilig
             v-if="veiligheidShow"
-            v-bind:userInfo="userInfo"        
+            v-bind:userInfo="userInfo"
+            v-on:nextInput="nextInput"
+            v-on:inputUser="inputUser"        
         />
     </div>
 </template>
@@ -27,6 +29,7 @@ import ManOfVrouw from './gebruikersInputComponents/ManOfVrouw.vue'
 import LeeftijdAfkomst from './gebruikersInputComponents/leeftijdAfkomst.vue'
 import Adres from './gebruikersInputComponents/Adres.vue'
 import Veilig from './gebruikersInputComponents/Veiligheid.vue'
+import PostService from '../../PostService.js'
 
 export default {
     name: 'Input',
@@ -56,7 +59,6 @@ export default {
     methods:{
         nextInput(){
             this.vragenBeantwoord++         
-            console.log(this.vragenBeantwoord)
             setTimeout(()=>{
                 switch(this.vragenBeantwoord){
                     case 1: this.leeftijdAfkomstShow = true
@@ -68,6 +70,14 @@ export default {
                     case 3: this.woonplaatsShow = false
                             this.veiligheidShow = true
                             break;
+                    case 4: this.veiligheidShow = false
+                            break;
+                }
+                if(this.vragenBeantwoord == 4){
+                    this.createPost()
+                    setTimeout(()=>{
+                        location.reload()
+                    },1000)
                 }
             }, 2000)
         },
@@ -87,6 +97,9 @@ export default {
                                  break;
             }
             console.log(this.userInfo)
+        },
+        async createPost(){
+            await PostService.insertPost(this.userInfo.woonplaats, this.userInfo.veiligheidsGevoel, this.userInfo.afkomst, this.userInfo.leeftijd, this.userInfo.geslacht)
         }
     },
 }

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/politie-logo.png"> -->
-    <!-- <PostComponent/> -->
-    <StartScherm class="offsetTop" v-if="!startDone" v-on:startQuiz="startQuiz"/>
+    <PostComponent v-if="dataBase"/>
+    <StartScherm class="offsetTop" v-if="!startDone" v-on:startQuiz="startQuiz" v-on:showDatabase="showDatabase"/>
 	 <user-input v-if="input"/>
   </div>
 </template>
@@ -17,7 +17,8 @@ export default {
   data(){
 	  return{
 		  startDone : false,
-		  input: false
+      input: false,
+      dataBase: false
 	  }
   },
   components: {
@@ -32,7 +33,14 @@ export default {
 			  document.querySelector("body").style.background = '#023274'
 			  this.input = true
 		  },2000)
-	  },
+    },
+    showDatabase(){
+      setTimeout(()=>{
+			  this.startDone = true
+			  document.querySelector("body").style.background = '#023274'
+			  this.dataBase = true
+		  },2000)
+    }
   }
 }
 </script>

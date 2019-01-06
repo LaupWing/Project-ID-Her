@@ -5,11 +5,17 @@
       <label for="create-woonplaats">Uw woonplaats</label>
       <input type="text" id="create-woonplaats" v-model="woonplaats">
       <br>
-      <label for="create-veilig">Uw Veiligheidsgevoel</label>
-      <input type="text" id="create-veilig" v-model="veilig">
+      <label for="create-geslacht">Uw Geslacht</label>
+      <input type="text" id="create-geslacht" v-model="geslacht">
+      <br>
+      <label for="create-leeftijd">Uw Leeftijd</label>
+      <input type="text" id="create-leeftijd" v-model="leeftijd">
       <br>
       <label for="create-afkomst">Uw Afkomst</label>
       <input type="text" id="create-afkomst" v-model="afkomst">
+      <br>
+      <label for="create-veilig">Uw Veiligheidsgevoel</label>
+      <input type="text" id="create-veilig" v-model="veilig">
       <br>
       <button class="button2" @click="createPost">Post</button>
     </div>
@@ -26,6 +32,8 @@
         {{`${post.gemaakt.getDate()}/${post.gemaakt.getMonth()+1}/${post.gemaakt.getFullYear()}`}}
         <p class="text">Woonplaats: {{post.woonplaats}}</p>
         <p>Afkomst: {{post.afkomst}}</p>
+        <p>Geslacht: {{post.geslacht}}</p>
+        <p>Leeftijd: {{post.leeftijd}}</p>
         <p>Veiligheidsgevoel: {{post.veilig}}</p>
       </div>
     </div>
@@ -43,7 +51,9 @@ export default {
       woonplaats:'',
       veilig: '',
       afkomst: '',
-      error: ''
+      error: '',
+      geslacht: '',
+      leeftijd:''
     }
   },
   async created(){
@@ -52,10 +62,11 @@ export default {
     }catch(err){
       this.error = err.message;
     }
+    document.querySelector('body').style.overflowY = 'scroll'
   },
   methods:{
     async createPost(){
-      await PostService.insertPost(this.woonplaats, this.veilig, this.afkomst)
+      await PostService.insertPost(this.woonplaats, this.veilig, this.afkomst, this.leeftijd, this.geslacht)
       this.posts = await PostService.getPosts();
     },
     async deletePost(id){
@@ -71,6 +82,7 @@ export default {
 div.container{
   max-width: 800px;
   margin: 0 auto;
+  animation: slideIn 4s forwards;
 }
 p.error{
   border: 1px solid #ff5b5f;
