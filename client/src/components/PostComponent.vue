@@ -11,7 +11,7 @@
       <label for="create-afkomst">Uw Afkomst</label>
       <input type="text" id="create-afkomst" v-model="afkomst">
       <br>
-      <button @click="createPost">Post</button>
+      <button class="button2" @click="createPost">Post</button>
     </div>
     <hr>
     <p class="error" v-if="error">{{error}}</p>
@@ -23,7 +23,7 @@
         v-bind:key="post._id"
         v-on:dblclick="deletePost(post._id)"
       >
-        {{`${post.gemaakt.getDate()}/${post.gemaakt.getMonth()}/${post.gemaakt.getFullYear()}`}}
+        {{`${post.gemaakt.getDate()}/${post.gemaakt.getMonth()+1}/${post.gemaakt.getFullYear()}`}}
         <p class="text">Woonplaats: {{post.woonplaats}}</p>
         <p>Afkomst: {{post.afkomst}}</p>
         <p>Veiligheidsgevoel: {{post.veilig}}</p>
@@ -59,7 +59,6 @@ export default {
       this.posts = await PostService.getPosts();
     },
     async deletePost(id){
-      console.log(id)
       await PostService.deletePost(id);
       this.posts = await PostService.getPosts();
     }

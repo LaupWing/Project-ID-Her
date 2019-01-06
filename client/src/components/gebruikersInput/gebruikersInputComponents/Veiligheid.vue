@@ -34,6 +34,12 @@
         <div class="sliderBorder">
          <input @change="handleChange" class="slider" type="range" min="1" max="10" v-model="veiligheidsGevoel">
         </div>
+         <button 
+             :class="['next button2', (flag === false) ? 'disabled' : '']"
+             @click="inputCompleted"
+             >
+              >>
+        </button>
     </div>
 </template>
 <script>
@@ -49,6 +55,7 @@ export default {
             afkomst: this.userInfo.afkomst,
             veiligheidsGevoel: 1,
             gevoelImg: 1,
+            flag: false,
             gemaakt: new Date(),
             kleur:[
                 {
@@ -100,6 +107,7 @@ export default {
             return require(`../../../assets/Avatar/${this.avatarPath}`)
         },
         handleChange(){
+            this.flag = true
             this.imgTransition()
             this.kleur.forEach((i)=>{
                 if(i.onveilig == this.veiligheidsGevoel){
@@ -153,8 +161,8 @@ export default {
                 this.gevoelImg = 6
             }
         },
-        removeClasses(array){
-            // array.forEach(())
+        inputCompleted(){
+            console.log(this.userInfo)
         }
     }
 }
@@ -168,6 +176,7 @@ export default {
     border-radius: 10px;
     position: relative;
     box-shadow: 15px 14px 5px 1px rgba(0,0,0,0.3);
+    animation: slideIn 2s;
 }
 .paspoort-logo{
     width: 20%;
@@ -184,6 +193,11 @@ export default {
 }
 .tekst{
     margin-bottom: 50px;
+}
+.next{
+    position: absolute;
+    bottom: 30px;
+    animation: slideIn 4s;
 }
 img.avatar{
     width: 180px;
@@ -220,7 +234,8 @@ img.avatar{
 .onveiligheid{
     font-size: 25px;
     color: white;
-    margin-top: 80px;
+    margin-top: 40px;
+    animation: slideIn 3s;
 }
 /* Gevoel img properties */
 img.nerveus{
@@ -304,12 +319,13 @@ img.neutraal{
 }
 
 .sliderBorder{
-  bottom: 50px;
+  bottom: 110px;
   padding: 5px;
   border: solid white 5px;
   border-radius: 40px;
   margin-top: 100px;
   position: fixed;
+  animation: slideIn 3s;
 }
 /* Custom Slider */
 .slider {
@@ -352,9 +368,9 @@ img.neutraal{
 }
 
 .slideInImg{
-    animation: slideIn 1s forwards;
+    animation: slideInImg 1s forwards;
 }
-@keyframes slideIn{
+@keyframes slideInImg{
   from {transform: translate(-50px, 0); opacity: 0;}
   to {transform: translate(0, 0); opacity: 1;}
 }

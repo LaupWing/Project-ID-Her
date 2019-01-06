@@ -171,7 +171,10 @@ export default {
 </script>
 <style>
 #map{
-    animation: slideIn 4s forwards;
+    animation: slideIn 2s forwards;
+}
+.buttons{
+    animation: slideIn 3s forwards;
 }
 .buttons.fadeButtons{
     animation: fadingIn 1s forwards;

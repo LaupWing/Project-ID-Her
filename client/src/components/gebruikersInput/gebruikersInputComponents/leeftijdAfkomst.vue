@@ -33,7 +33,10 @@
         </div>
         <button 
             @click="nextInput" 
-            :class="['next', ((afkomst == '') && (leeftijd == '')) ? 'disabled' : '']">>></button>
+            :class="['next', ((afkomst == '') && (leeftijd == '')) ? 'disabled' : '']"
+        >
+         >>
+        </button>
     </div>
 </template>
 <script>
