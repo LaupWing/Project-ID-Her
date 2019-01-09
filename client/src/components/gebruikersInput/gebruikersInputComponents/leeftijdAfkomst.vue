@@ -28,12 +28,12 @@
                 v-if="leeftijd == ''">Gebruik de slider om je leeftijd aan te geven!</p>
             <h3 
                 v-if="leeftijd !== ''">Leeftijd: {{leeftijd}}</h3>
-            <input @change="sliderAge" class="slider" type="range" min="12" max="80" value="1">
+            <input @click="clickSlider" @change="sliderAge" class="slider" type="range" min="12" max="80" v-model="leeftijd">
             </div>
         </div>
         <button 
             @click="nextInput" 
-            :class="['next', ((afkomst == '') && (leeftijd == '')) ? 'disabled' : '']"
+            :class="['next', ((afkomst == '') && (leeftijd == 1)) ? 'disabled' : '']"
         >
          >>
         </button>
@@ -48,7 +48,7 @@ export default {
             afkomst: '',
             avatar: 'onbekend.png',
             avatarPath: '',
-            leeftijd: '',
+            leeftijd: 1,
             vorigeLeeftijd: '',
             afkomstSelect: false,
             nationaliteiten:[
@@ -66,11 +66,23 @@ export default {
             // this.changeAvatar()
         },
         sliderAge(event){
-            this.vorigeLeeftijd = this.leeftijd
             this.leeftijd = event.target.value
             this.changeAvatar()
         },
-        checkLeeftijdCategorie(){
+		clickSlider(){
+			if(this.avatar === 'onbekend.png'){
+				return
+			}else{
+				this.vorigeLeeftijd = this.leeftijd
+			}
+		},
+		changeAvatar(){
+			if(this.afkomst !== '' && this.leeftijd !== ''){
+				this.checkLeeftijdCategorie()
+			}
+		},
+		checkLeeftijdCategorie(){
+			console.log(this.vorigeLeeftijd, this.leeftijd)
             if(this.categorie(this.vorigeLeeftijd)===this.categorie(this.leeftijd)){
                 return
            }else{
@@ -78,17 +90,15 @@ export default {
            }
         },
         categorie(leeftijd){
-            if(leeftijd < 28){
+			if(leeftijd === ''){
+				return 'onbekend'
+			}
+            else if(leeftijd < 28){
                 return 'jong'
             }else if(leeftijd >= 28 && leeftijd <= 60){
                 return 'volwassen'
             }else{
                 return 'oud'
-            }
-        },
-        changeAvatar(){
-            if(this.afkomst !== '' && this.leeftijd !== ''){
-                this.checkLeeftijdCategorie()
             }
         },
         transitionAvatar(){
@@ -119,7 +129,7 @@ export default {
                    this.$el.querySelector('img').classList.add("fadeIn")
                    this.removeImgClasses()
                  },1000)
-        },
+		},
         imgUrl(){
             return require(`../../../assets/Avatar/${this.avatar}`)
         },

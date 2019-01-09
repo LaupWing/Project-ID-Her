@@ -1,8 +1,7 @@
 <template>
 <div class="geslacht">
     <div class="tekst">
-        <p>Voordat de quiz begint willen we graag wat te komen weten over jou:)</p>
-        <h2>Wat is je geslacht</h2>
+        <h2>Wat is je geslacht ?</h2>
     </div>
     <div class="wrapper">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 662.9 626">
