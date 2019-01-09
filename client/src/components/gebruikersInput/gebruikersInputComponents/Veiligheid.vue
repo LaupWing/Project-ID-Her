@@ -170,6 +170,10 @@ export default {
             this.$emit('nextInput')
             this.$emit('inputUser', 'veiligheidsGevoel', this.veiligheidsGevoel)
         }
+    },
+    created(){
+        document.querySelector("body").style.background = '#023274'
+
     }
 }
 </script>

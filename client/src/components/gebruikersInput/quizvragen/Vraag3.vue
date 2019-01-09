@@ -1,7 +1,7 @@
 <template>
-    <div class="vraag1 flexCenter">
+    <div class="vraag3 flexCenter">
         <div class="tekst">
-            <h2>Marokkaans-Nederlandse verdachten hebben een grotere kans om in de cel gezet te worden dan autochtone verdachten. Hoeveel groter is die kans?</h2>
+            <h2>Heb je weleens te maken gehad met politiegeweld?</h2>
         </div>
         <img src="http://www.shopotticatre.it/pimages/Work-in-progress-big-527-814.png" alt="">
         <button @click="nextInput">>></button>
@@ -9,7 +9,7 @@
 </template>
 <script>
 export default { 
-    name: 'vraag1',
+    name: 'vraag3',
     components:{
 
     },

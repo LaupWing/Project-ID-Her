@@ -1,7 +1,7 @@
 <template>
-    <div class="vraag1 flexCenter">
+    <div class="vraag4 flexCenter">
         <div class="tekst">
-            <h2>Marokkaans-Nederlandse verdachten hebben een grotere kans om in de cel gezet te worden dan autochtone verdachten. Hoeveel groter is die kans?</h2>
+            <h2>Denk je dat het politiegeweld tussen 2016 en 2018 is toegenomen of is verminderd?</h2>
         </div>
         <img src="http://www.shopotticatre.it/pimages/Work-in-progress-big-527-814.png" alt="">
         <button @click="nextInput">>></button>
@@ -9,7 +9,7 @@
 </template>
 <script>
 export default { 
-    name: 'vraag1',
+    name: 'vraag4',
     components:{
 
     },
@@ -27,7 +27,7 @@ export default {
         }
     },
     created(){
-        document.querySelector("body").style.background = '#38a3d1'
+        
     }
     
 }

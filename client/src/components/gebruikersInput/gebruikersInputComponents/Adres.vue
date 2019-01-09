@@ -162,7 +162,8 @@ export default {
             this.$emit('inputUser', 'woonplaats', this.woonplaats)
         }
     },
-    mounted(){    
+    mounted(){
+        document.querySelector("body").style.background = '#023274'    
         const groups = this.$el.querySelectorAll('g')
         this.invisible(groups, 0)
         this.opacity('#Nederland', 1)

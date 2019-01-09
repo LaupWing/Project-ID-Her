@@ -1,5 +1,7 @@
 <template>
     <div>
+        <!-- User input vragen -->
+        <!-- Dit kan modulair gemaakt worden -->
         <man-of-vrouw 
             v-if="geslachtShow" 
             v-on:nextInput="nextInput" 
@@ -22,6 +24,38 @@
             v-on:nextInput="nextInput"
             v-on:inputUser="inputUser"        
         />
+
+        <!-- Quiz vragen -->
+        <!-- Dit kan modulair gemaakt worden -->
+        <vraag1
+            v-if="vraag1Show"
+            v-on:nextInput="nextInput"
+        />
+        <vraag2
+            v-if="vraag2Show"
+            v-on:nextInput="nextInput"
+        />
+        <vraag3
+            v-if="vraag3Show"
+            v-on:nextInput="nextInput"
+        />
+        <vraag4
+            v-if="vraag4Show"
+            v-on:nextInput="nextInput"
+        />
+        <vraag5
+            v-if="vraag5Show"
+            v-on:nextInput="nextInput"
+        />
+        <vraag6
+            v-if="vraag6Show"
+            v-on:nextInput="nextInput"
+        />
+        <vraag7
+            v-if="vraag7Show"
+            v-on:nextInput="nextInput"
+        />
+
     </div>
 </template>
 <script>
@@ -29,7 +63,22 @@ import ManOfVrouw from './gebruikersInputComponents/ManOfVrouw.vue'
 import LeeftijdAfkomst from './gebruikersInputComponents/leeftijdAfkomst.vue'
 import Adres from './gebruikersInputComponents/Adres.vue'
 import Veilig from './gebruikersInputComponents/Veiligheid.vue'
+
+// Vragen
+import Vraag1 from './quizvragen/Vraag1.vue'
+import Vraag2 from './quizvragen/Vraag2.vue'
+import Vraag3 from './quizvragen/Vraag3.vue'
+import Vraag4 from './quizvragen/Vraag4.vue'
+import Vraag5 from './quizvragen/Vraag5.vue'
+import Vraag6 from './quizvragen/Vraag6.vue'
+import Vraag7 from './quizvragen/Vraag7.vue'
+
+
 import PostService from '../../PostService.js'
+
+
+
+
 
 export default {
     name: 'Input',
@@ -37,7 +86,14 @@ export default {
         ManOfVrouw,
         LeeftijdAfkomst,
         Adres,
-        Veilig
+        Veilig,
+        Vraag1,
+        Vraag2,
+        Vraag3,
+        Vraag4,
+        Vraag5,
+        Vraag6,
+        Vraag7
     },
     data(){
         return{
@@ -46,6 +102,13 @@ export default {
             leeftijdAfkomstShow: false,
             woonplaatsShow: false,
             veiligheidShow: false,
+            vraag1Show: false,
+            vraag2Show: false,
+            vraag3Show: false,
+            vraag4Show: false,
+            vraag5Show: false,
+            vraag6Show: false,
+            vraag7Show: false,
             userInfo:{
                 geslacht:'',
                 woonplaats: '',
@@ -64,21 +127,37 @@ export default {
                     case 1: this.leeftijdAfkomstShow = true
                             this.geslachtShow = false
                             break;
-                    case 2: this.woonplaatsShow = true
+                    case 2: this.vraag1Show = true
                             this.leeftijdAfkomstShow = false
                             break;
-                    case 3: this.woonplaatsShow = false
+                    case 3: this.vraag1Show = false
+                            this.vraag2Show = true
+                            break;
+                    case 4: this.vraag2Show = false
+                            this.woonplaatsShow = true
+                            break;
+                    case 5: this.woonplaatsShow = false
+                            this.vraag3Show = true
+                            break;
+                    case 6: this.vraag3Show = false
+                            this.vraag4Show = true
+                            break;
+                    case 7: this.vraag4Show = false
+                            this.vraag5Show = true
+                            break;
+                    case 8: this.vraag5Show = false
+                            this.vraag6Show = true
+                            break;
+                    case 9: this.vraag6Show = false
                             this.veiligheidShow = true
                             break;
-                    case 4: this.veiligheidShow = false
-                            break;
                 }
-                if(this.vragenBeantwoord == 4){
-                    this.createPost()
-                    setTimeout(()=>{
-                        location.reload()
-                    },1000)
-                }
+                // if(this.vragenBeantwoord == 4){
+                //     // this.createPost()
+                //     setTimeout(()=>{
+                //         location.reload()
+                //     },1000)
+                // }
             }, 2000)
         },
         inputUser(prop, value){
@@ -96,7 +175,6 @@ export default {
                 case 'avatarPath': this.userInfo.avatarPath = value
                                  break;
             }
-            console.log(this.userInfo)
         },
         async createPost(){
             await PostService.insertPost(this.userInfo.woonplaats, this.userInfo.veiligheidsGevoel, this.userInfo.afkomst, this.userInfo.leeftijd, this.userInfo.geslacht)
@@ -114,6 +192,7 @@ export default {
     margin: auto;
     border-radius: 0 0 20px 20px;
     animation: slideInTekst 2s forwards;
+    max-width: 800px;
 }
 .buttons{
     margin-top: 30px;
