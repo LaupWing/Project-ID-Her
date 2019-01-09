@@ -32,6 +32,11 @@ export default {
       this.$emit('startQuiz')
     },
     show(){
+      this.$el.querySelector('.grass').classList.add("slidingOutBottom")
+      this.$el.querySelector('.politie-auto').classList.add("slidingOutBottom")
+      this.$el.querySelector('.banner').classList.add("slidingOutTop")
+      this.$el.querySelector('.politie-logo').classList.add("slidingOutTop")
+      this.$el.querySelector('button').classList.add("slidingOutTop")
       this.$emit('showDatabase')
     }
   }
