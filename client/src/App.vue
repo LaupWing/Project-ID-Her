@@ -1,35 +1,41 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/politie-logo.png"> -->
-    <PostComponent v-if="dataBase"/>
-    <StartScherm class="offsetTop" v-if="!startDone" v-on:startQuiz="startQuiz" v-on:showDatabase="showDatabase"/>
-	 <user-input v-if="input"/>
+     <transition name="router-anim" mode="out-in">
+        <router-view 
+            class="view" 
+            v-on:userInput='userInput'
+            v-bind:userInfo='userInfo'
+        >
+        </router-view>
+     </transition>
   </div>
 </template>
 
 <script>
-import PostComponent from './components/PostComponent.vue'
-import StartScherm from './components/startScherm/Startscherm.vue'
-import UserInput from './components/gebruikersInput/Input.vue'
 
 export default {
   name: 'app',
   data(){
 	  return{
-		  startDone : false,
-      input: false,
-      dataBase: false
+		// startQuiz : false,
+        input: false,
+        dataBase: false,
+        userInfo:{
+                geslacht:'',
+                woonplaats: '',
+                avatarPath: '',
+                leeftijd:'',
+                afkomst:'',
+                veiligheidsGevoel: '',
+            }
 	  }
   },
   components: {
-    PostComponent,
-	 StartScherm,
-	 UserInput
   },
   methods:{
 	  startQuiz(){
 		  setTimeout(()=>{
-			  this.startDone = true
+			  this.startQuiz = true
 			  document.querySelector("body").style.background = '#023274'
 			  this.input = true
 		  },2000)
@@ -40,19 +46,26 @@ export default {
 			  document.querySelector("body").style.background = '#023274'
 			  this.dataBase = true
 		  },2000)
+    },
+    userInput(property, info){
+        this.userInfo[property] = info
     }
-  }
+  },
 }
 </script>
 
 <style>
+/* Global elements styling 
+################################*/
 body{
-  /* background: linear-gradient(to bottom, #90dffe 0%, #38a3d1 100%); */
   background: #38a3d1;
   overflow: hidden;
-  height: 100vh;
   margin: 0;
   transition: 2s;
+}
+.view{
+    width: 100vw;
+    height: 100vh;
 }
 #app {
   font-family: 'Roboto Condensed', sans-serif;
@@ -60,72 +73,26 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
 }
-.offsetTop{
-	margin-top: 30px;
-}
-.flexCenter{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
+
 h1{
-  margin: 0;
+    margin: 0;
 }
 h2{
-	margin: 0;
-	color:#bf975a
+    margin: 0;
+    color:#bf975a
 }
 p{
-  margin: 0;
+    margin: 0;
 }
 li{
 	list-style: none;
 }
-button{
-  background: rgba(0, 0, 0, .3);
-  border: none;
-  padding: 15px 20px;
-  color: #bf975a;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 20px;
-  transition: .25s;
-  outline: none;
-}
-button:hover{
-  background: #023274;
-}
-.button2:hover{
-    background: #bf975a;
-    color: #023274;
-}
-.clicked{
-	background: #bf975a;
-   color: #023274;
-}
-.disabled{
-	cursor: default;
-	background: rgba(0, 0, 0, .3);
-	opacity: .5;
-}
-button.disabled:hover{
-	cursor: default;
-	background: rgba(0, 0, 0, .3);
-	opacity: .5;
-	color: #bf975a;
-}
-
-/* Styling States */
-.invisible{
-  opacity: 0;
-}
 
 
 
-/* Globale input styling */
+/* Globale input styling 
+################################*/
 label{
 	color: #bf975a;
 	font-size: 25px;
@@ -139,7 +106,79 @@ select{
 svg > path{
   transition: .25s;
 }
-/* Scrollbar */
+
+
+
+/* Position styling classes 
+################################*/
+.flexCenter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.offsetTop{
+	margin-top: 30px;
+}
+
+
+
+/* Styling States 
+################################*/
+.invisible{
+  opacity: 0;
+}
+
+
+
+/* Default button styling de rest staan in de buttons component
+################################*/
+button{
+  background: rgba(0, 0, 0, .3);
+  border: none;
+  padding: 15px 20px;
+  color: #bf975a;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: .25s;
+  outline: none;
+  width: 100px;
+}
+button:hover{
+  background: #023274;
+}
+
+
+
+
+
+/* Page components global elements 
+################################*/
+.tekst{
+    margin: 10px;
+    color: white;
+    background: rgba(0,0,0,.4);
+    padding: 20px;
+    display: inline-block;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+    animation: slideInTekst 2s forwards;
+}
+.wrapper{
+    padding: 80px 50px;
+    border: #bf975a solid 4px;
+    border-radius: 30px;
+    /* display: inline-block; */
+    animation: slideIn 3s forwards;
+    margin-top: 30px;
+}
+
+
+
+/* Scrollbar 
+################################*/
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -160,39 +199,58 @@ svg > path{
   background: #555; 
 }
 
-/* Globale keyframes */
+/* Globale keyframes 
+################################*/
 
-.slidingOutBottom{
-  animation: slideOutBottom 2s forwards !important;
+/* Enter quiz keyframes elements */
+.slideInItem1{
+    animation: slideIn 2s forwards;
 }
-.slidingOutTop{
-  animation: slideOutTop 2s forwards !important;
+.slideInItem2{
+    animation: slideIn 3s forwards;
 }
-
+.slideInItem3{
+    animation: slideIn 4s forwards;
+}
 @keyframes slideIn {
   from {transform: translate(0, 100vh);}
   to {transform: translate(0, 0)}
 }
 
+/* Default keyframe for tekst div */
 @keyframes slideInTekst{
   from {transform: translate(0, -50px);}
   to {transform: translate(0, 0)}
 }
 
+/* Dissapear elements through the bottom */
+.slidingOutBottom{
+  animation: slideOutBottom 2s forwards !important;
+}
 @keyframes slideOutBottom{
   100% {bottom: -10vh}
 }
 
+/* Dissapear elements through the top */
+.router-anim-leave-active{
+    animation: slideOutTop 2s forwards;
+}
+.slidingOutTop{
+  animation: slideOutTop 2s forwards !important;
+}
 @keyframes slideOutTop{
   from {transform: translate(0, 0);}
   to {transform: translate(0, -100vh)}
 }
 
+
+/* Car keyframe */
 @keyframes carRide {
   from {transform: translate(0, 0);}
   to {transform: translate(200vw, 0);}
 }
 
+/* Fading away (Mainly used for the avatar img fading out) */
 .fadeAway{
     animation: fadingAway 1s forwards;
 }
@@ -201,6 +259,8 @@ svg > path{
   to {transform: translate(300px, 0); opacity: 0;}
 }
 
+
+/* Fading away (Mainly used for the avatar img fading in) */
 .fadeIn{
     animation: fadingIn 1s forwards;
 }

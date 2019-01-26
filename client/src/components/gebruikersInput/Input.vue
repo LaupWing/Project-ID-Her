@@ -59,19 +59,17 @@
     </div>
 </template>
 <script>
-import ManOfVrouw from './gebruikersInputComponents/ManOfVrouw.vue'
-import LeeftijdAfkomst from './gebruikersInputComponents/leeftijdAfkomst.vue'
-import Adres from './gebruikersInputComponents/Adres.vue'
-import Veilig from './gebruikersInputComponents/Veiligheid.vue'
-
-// Vragen
-import Vraag1 from './quizvragen/Vraag1.vue'
-import Vraag2 from './quizvragen/Vraag2.vue'
-import Vraag3 from './quizvragen/Vraag3.vue'
-import Vraag4 from './quizvragen/Vraag4.vue'
-import Vraag5 from './quizvragen/Vraag5.vue'
-import Vraag6 from './quizvragen/Vraag6.vue'
-import Vraag7 from './quizvragen/Vraag7.vue'
+import ManOfVrouw from './InputPaginas/ManOfVrouw.vue'
+import LeeftijdAfkomst from './InputPaginas/leeftijdAfkomst.vue'
+import Adres from './InputPaginas/Adres.vue'
+import Veilig from './InputPaginas/Veiligheid.vue'
+import Vraag1 from './InputPaginas/Vraag1.vue'
+import Vraag2 from './InputPaginas/Vraag2.vue'
+import Vraag3 from './InputPaginas/Vraag3.vue'
+import Vraag4 from './InputPaginas/Vraag4.vue'
+import Vraag5 from './InputPaginas/Vraag5.vue'
+import Vraag6 from './InputPaginas/Vraag6.vue'
+import Vraag7 from './InputPaginas/Vraag7.vue'
 
 
 import PostService from '../../PostService.js'
@@ -191,19 +189,19 @@ export default {
     display: inline-block;
     margin: auto;
     border-radius: 0 0 20px 20px;
-    animation: slideInTekst 2s forwards;
+    /* animation: slideInTekst 2s forwards; */
     max-width: 800px;
 }
 .buttons{
     margin-top: 30px;
-    animation: slideIn 4s forwards;
+    /* animation: slideIn 4s forwards; */
 }
 .wrapper{
     padding: 80px 50px;
     border: #bf975a solid 4px;
     border-radius: 30px;
     display: inline-block;
-    animation: slideIn 3s forwards;
+    /* animation: slideIn 3s forwards; */
     margin-top: 30px;
 }
 button{

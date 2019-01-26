@@ -31,18 +31,25 @@
             <input @click="clickSlider" @change="sliderAge" class="slider" type="range" min="12" max="80" v-model="leeftijd">
             </div>
         </div>
-        <button 
+        <buttons></buttons>
+        <!-- <button 
             @click="nextInput" 
-            :class="['next', ((afkomst == '') && (leeftijd == 1)) ? 'disabled' : '']"
+            :class="['next button2', ((afkomst == '') && (leeftijd == 1)) ? 'disabled' : '']"
         >
          >>
-        </button>
+        </button> -->
+
     </div>
 </template>
 <script>
+import Buttons from '../InputComponents/Buttons.vue'
+
 export default {
     name: 'LeeftEnAfkomst',
     props:['userInfo'],
+    components:{
+        Buttons
+    },
     data(){
         return{
             afkomst: '',
@@ -165,9 +172,9 @@ img{
     color: white;
     margin: 5px;
 }
-.flexCenter{
+/* .flexCenter{
     margin: 10px;
-}
+} */
 .container{
     margin: 0;
 }
@@ -257,10 +264,10 @@ li:hover{
 button{
     animation: slideIn 4.5s;
 }
-button:hover{
+/* button:hover{
     background: #bf975a;
     color: #023274;
-}
+} */
 
 
 

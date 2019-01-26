@@ -5,7 +5,9 @@
 			<p>Welkom!</p>
 			<h1>Politie Quiz</h1>
 		</div>
-		<button @click="start">START</button>
+        <!-- <router-link to="/geslacht"> -->
+		    <button @click="start">START</button>
+        <!-- </router-link> -->
     <img @click="show" class="politie-auto" src="../../assets/politie-auto.png" alt="">
     <div class="grass"></div>
 	 </div>
@@ -24,12 +26,15 @@ export default {
   },
   methods:{
     start(){
-      this.$el.querySelector('.grass').classList.add("slidingOutBottom")
-      this.$el.querySelector('.politie-auto').classList.add("slidingOutBottom")
-      this.$el.querySelector('.banner').classList.add("slidingOutTop")
-      this.$el.querySelector('.politie-logo').classList.add("slidingOutTop")
-      this.$el.querySelector('button').classList.add("slidingOutTop")
-      this.$emit('startQuiz')
+    //   this.$el.querySelector('.grass').classList.add("slidingOutBottom")
+    //   this.$el.querySelector('.politie-auto').classList.add("slidingOutBottom")
+      this.$el.querySelector('.politie-auto').style.opacity = 0;
+      this.$el.querySelector('.grass').style.opacity = 0;
+    //   this.$el.querySelector('.banner').classList.add("slidingOutTop")
+    //   this.$el.querySelector('.politie-logo').classList.add("slidingOutTop")
+    //   this.$el.querySelector('button').classList.add("slidingOutTop")
+    //   this.$emit('startQuiz')
+      setTimeout( () => this.$router.push({ path: '/geslacht'}), 250);
     },
     show(){
       this.$el.querySelector('.grass').classList.add("slidingOutBottom")
@@ -48,6 +53,7 @@ export default {
   position: fixed;
   left: -40vw;
   bottom: 20px;
+  transition: .25s;
   animation: carRide 15s infinite;
 }
 .grass{
@@ -56,6 +62,7 @@ export default {
   background:green;
   position: fixed;
   bottom: 0;
+  transition: .25s;
 }
 .politie-logo{
   animation: slideIn 2s;

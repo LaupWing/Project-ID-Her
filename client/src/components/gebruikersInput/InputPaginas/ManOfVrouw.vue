@@ -1,9 +1,9 @@
 <template>
-<div class="geslacht">
+<div class="geslacht flexCenter">
     <div class="tekst">
         <h2>Wat is je geslacht ?</h2>
     </div>
-    <div class="wrapper">
+    <div class="wrapper slideInItem1 flexCenter">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 662.9 626">
         <title>man-woman</title>
         <g id="man">
@@ -19,31 +19,50 @@
         </g>
     </svg>
     </div>
-    <div class="buttons">
+    <!-- <div class="buttons">
         <button class="button2" @click="keuze">Man</button>
         <button class="button2" @click="keuze">Vrouw</button>
         <button  @click="nextInput"  class="button2 next disabled">>></button>
-    </div>
+    </div> -->
+    <buttons
+        v-bind:pageChoices='pageChoices'
+        v-bind:keuzeGemaakt='keuzeGemaakt'
+        v-on:sendInfo ='sendInfo'    
+    />
 </div>
 </template>
 <script>
+import Buttons from '../InputComponents/Buttons.vue'
 export default {
     data(){
         return{
             man: false,
             vrouw: false,
-            geslacht: ''
+            geslacht: '',
+            keuzeGemaakt: false,
+            pageChoices:{
+                values: ['man', 'vrouw'],
+                btnClass: 'button1',
+                next: '/leeftijdAfkomst',
+                eventFunction: this.keuze,
+                btnCls: 'button2'
+            }
         }
+    },
+    components:{
+        Buttons
     },
     methods:{
         keuze(event){
+            this.keuzeGemaakt = true;
             this.removeClasses('button', 'clicked')
             event.target.classList.add('clicked')
-            this.$el.querySelector('.next').classList.remove('disabled')
-            if(event.target.textContent === 'Man'){
+            // this.$el.querySelector('.next').classList.remove('disabled')
+            if(event.target.textContent.trim() == 'man'){
                 this.geslacht = 'man'
                 this.changeIcon('man')
             }else{
+                console.log("verander naar vrouw")
                 this.geslacht = 'vrouw'
                 this.changeIcon('vrouw')
             }
@@ -60,33 +79,23 @@ export default {
                 el.classList.remove(`${classes}`)
             })
         },
-        nextInput(){
-            this.$el.querySelector('.tekst').classList.add("slidingOutTop")
-            this.$el.querySelector('.wrapper').classList.add("slidingOutTop")
-            this.$el.querySelector('.buttons').classList.add("slidingOutTop")
-            this.$emit('nextInput')
-            this.$emit('inputUser', 'geslacht', this.geslacht)
+        // nextInput(){
+        //     this.$el.querySelector('.tekst').classList.add("slidingOutTop")
+        //     this.$el.querySelector('.wrapper').classList.add("slidingOutTop")
+        //     this.$el.querySelector('.buttons').classList.add("slidingOutTop")
+        //     this.$emit('nextInput')
+        //     this.$emit('inputUser', 'geslacht', this.geslacht)
+        // }
+        sendInfo(){
+            this.$emit('userInput', 'geslacht', this.geslacht)
         }
+    },
+    created(){
+        document.querySelector("body").style.background = '#023274'
     }
 }
 </script>
 <style scoped>
-.geslacht{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-.tekst{
-    margin: 10px;
-    color: white;
-    background: rgba(0,0,0,.4);
-    padding: 20px;
-    display: inline-block;
-    margin: auto;
-    border-radius: 0 0 20px 20px;
-    animation: slideInTekst 2s forwards;
-}
 .man, .vrouw{
     fill: none;
     stroke: #bf975a;
@@ -104,7 +113,7 @@ button{
 }
 .buttons{
     margin-top: 30px;
-    animation: slideIn 4s forwards;
+    /* animation: slideIn 4s forwards; */
 }
 /* .button2:hover{
     background: #bf975a;
