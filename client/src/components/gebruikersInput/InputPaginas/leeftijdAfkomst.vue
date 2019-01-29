@@ -31,13 +31,13 @@
             <input @click="clickSlider" @change="sliderAge" class="slider" type="range" min="12" max="80" v-model="leeftijd">
             </div>
         </div>
-        <buttons></buttons>
-        <!-- <button 
-            @click="nextInput" 
-            :class="['next button2', ((afkomst == '') && (leeftijd == 1)) ? 'disabled' : '']"
+        <buttons 
+            class="flexCenter"
+            v-bind:pageChoices='pageChoices'
+            v-bind:keuzeGemaakt='keuzeGemaakt'
+            v-on:sendInfo ='sendInfo'
         >
-         >>
-        </button> -->
+        </buttons>
 
     </div>
 </template>
@@ -60,7 +60,15 @@ export default {
             afkomstSelect: false,
             nationaliteiten:[
                 'Nederlands','Afrikaans', 'Pools', 'Marrokaans', 'Frans', 'Russische', 'Surinaams', 'Nigeria', 'Antiliaans', 'Turks' , 'Japans', 'Amerikaans' , 'Overige Aziatische'
-            ]
+            ],
+            keuzeGemaakt: false,
+            pageChoices:{
+                values: [],
+                btnClass: 'button1',
+                next: '/adres',
+                eventFunction: '',
+                btnCls: 'button2'
+            }
         }
     },
     methods:{
@@ -70,7 +78,6 @@ export default {
         },
         toggleAfkomst(){
             this.afkomstSelect = !this.afkomstSelect;
-            // this.changeAvatar()
         },
         sliderAge(event){
             this.leeftijd = event.target.value
@@ -85,6 +92,7 @@ export default {
 		},
 		changeAvatar(){
 			if(this.afkomst !== '' && this.leeftijd !== ''){
+                this.keuzeGemaakt = true
 				this.checkLeeftijdCategorie()
 			}
 		},
@@ -124,14 +132,14 @@ export default {
             const currentAvatar = this.avatar
              setTimeout(()=>{
                 if(this.leeftijd < 28){
-                   this.avatar = `${this.userInfo.geslacht}/jong.png`
-                   this.avatarPath = `${this.userInfo.geslacht}/jong.png`
+                   this.avatar = `${this.userInfo.Geslacht}/jong.png`
+                   this.avatarPath = `${this.userInfo.Geslacht}/jong.png`
                  }else if(this.leeftijd >= 28 && this.leeftijd <= 60){
-                   this.avatar = `${this.userInfo.geslacht}/volwassen.png`
-                   this.avatarPath = `${this.userInfo.geslacht}/volwassen.png`
+                   this.avatar = `${this.userInfo.Geslacht}/volwassen.png`
+                   this.avatarPath = `${this.userInfo.Geslacht}/volwassen.png`
                  }else{
-                   this.avatar = `${this.userInfo.geslacht}/oud.png`
-                   this.avatarPath = `${this.userInfo.geslacht}/oud.png`
+                   this.avatar = `${this.userInfo.Geslacht}/oud.png`
+                   this.avatarPath = `${this.userInfo.Geslacht}/oud.png`
                  }
                    this.$el.querySelector('img').classList.add("fadeIn")
                    this.removeImgClasses()
@@ -146,15 +154,11 @@ export default {
                 this.$el.querySelector('img').classList.remove("fadeIn")
             },1000)
         },
-        nextInput(){
-            this.$el.querySelector('.tekst').classList.add("slidingOutTop")
-            this.$el.querySelector('.wrapper').classList.add("slidingOutTop")
-            this.$el.querySelector('.buttons').classList.add("slidingOutTop")
-            this.$el.querySelector('.next').classList.add("slidingOutTop")
-            this.$emit('inputUser', 'afkomst', this.afkomst)
-            this.$emit('inputUser', 'leeftijd', this.leeftijd)
-            this.$emit('inputUser', 'avatarPath', this.avatarPath)
-            this.$emit('nextInput')
+        sendInfo(){
+            console.log("sending info")
+            this.$emit('userInput', 'Afkomst', this.afkomst)
+            this.$emit('userInput', 'Leeftijd', this.leeftijd)
+            this.$emit('userInput', 'AvatarPath', this.avatarPath)
         }
     }
 }

@@ -1,29 +1,64 @@
 <template>
     <div class="vraag3 flexCenter">
+        <Popup
+            v-if="popupShow"
+            v-bind:popupProperties='popupProperties'
+        ></Popup>
         <div class="tekst">
-            <h2>Heb je weleens te maken gehad met politiegeweld?</h2>
+            <h2>In welk jaar heeft de politie voor het eerst beleid gemaakt dat etnische profileren tegen gaat</h2>
         </div>
         <img src="http://www.shopotticatre.it/pimages/Work-in-progress-big-527-814.png" alt="">
-        <button @click="nextInput">>></button>
+        <buttons
+            v-bind:pageChoices='pageChoices'
+            v-bind:keuzeGemaakt='keuzeGemaakt'
+            v-on:sendInfo ='sendInfo'
+    	/>
     </div>
 </template>
 <script>
+import Popup from '../InputComponents/Popup.vue'
+import Buttons from '../InputComponents/Buttons.vue'
 export default { 
     name: 'vraag3',
     components:{
-
+        Buttons,
+        Popup
     },
     data(){
         return{
-
+            keuzeGemaakt: false,
+            pageChoices:{
+                values: ['1993', '2002', '2017'],
+                btnClass: 'button1',
+                next: '/vraag4',
+                eventFunction: this.showPopup,
+                btnCls: 'button2'
+            },
+            popupShow: false,
+            popupProperties:{
+                antwoord: '',
+                event: this.gekozen
+            },
+            antwoord: ''
         }
     },
     methods:{
-        nextInput(){
-            this.$el.querySelector('.tekst').classList.add("slidingOutTop")
-            this.$el.querySelector('img').classList.add("slidingOutTop")
-            this.$el.querySelector('button').classList.add("slidingOutTop")
-            this.$emit('nextInput')
+        showPopup(){
+            this.antwoord = event.target.textContent.trim()
+            if(event.target.textContent.trim() == '2017'){
+                this.popupProperties.antwoord = "Dat klopt!"
+            }else{
+                this.popupProperties.antwoord = "Helaas!"
+            }
+            this.popupShow = true;
+        },
+        gekozen(){
+            this.popupShow = false
+            this.keuzeGemaakt = true
+        },
+        sendInfo(){
+            console.log("sending info")
+            this.$emit('userInput', 'Vraag3', this.antwoord)
         }
     },
     created(){
@@ -33,11 +68,6 @@ export default {
 }
 </script>
 <style scoped>
-img{
-    animation: slideIn 3s forwards;
-}
-button{
-    animation: slideIn 4s forwards;
-}
+
 </style>
 

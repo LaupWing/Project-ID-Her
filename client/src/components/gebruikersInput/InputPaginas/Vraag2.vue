@@ -1,29 +1,65 @@
 <template>
     <div class="vraag2 flexCenter">
+        <Popup
+            v-if="popupShow"
+            v-bind:popupProperties='popupProperties'
+        ></Popup>
         <div class="tekst">
-            <h2>Autochtone Nederlanders en Nederlanders met een migratieachtergrond hebben niet evenveel vertrouwen in de politie. Hoe groot is het verschil?</h2>
+            <h2>Hoeveel procent van de jongeren met een Turkse, Marrokaanse, Surinaamse en Antiliaanse achtergrond wil zeker niet of waarschijnlijk niet bij de politie werken?</h2>
         </div>
-        <img src="http://www.shopotticatre.it/pimages/Work-in-progress-big-527-814.png" alt="">
-        <button @click="nextInput">>></button>
+        <buttons 
+            class="buttons"
+            v-bind:pageChoices='pageChoices'
+            v-bind:keuzeGemaakt='keuzeGemaakt'
+            v-on:sendInfo ='sendInfo'
+        >
+        </buttons>
     </div>
 </template>
 <script>
+import Buttons from '../InputComponents/Buttons.vue'
+import Popup from '../InputComponents/Popup.vue'
 export default { 
-    name: 'vraag2',
+    name: 'Vraag2',
     components:{
-
+        Buttons,
+        Popup
     },
     data(){
         return{
-
+            keuzeGemaakt: false,
+            pageChoices:{
+                values: ['21%', '29%', '83%'],
+                btnClass: 'button1',
+                next: '/politie-intro',
+                eventFunction: this.showPopup,
+                btnCls: 'button2'
+            },
+            popupShow: false,
+            popupProperties:{
+                antwoord: '',
+                event: this.gekozen
+            },
+            antwoord: ''
         }
     },
     methods:{
-        nextInput(){
-            this.$el.querySelector('.tekst').classList.add("slidingOutTop")
-            this.$el.querySelector('img').classList.add("slidingOutTop")
-            this.$el.querySelector('button').classList.add("slidingOutTop")
-            this.$emit('nextInput')
+        showPopup(){
+            this.antwoord = event.target.textContent.trim()
+            if(event.target.textContent.trim() == '83%'){
+                this.popupProperties.antwoord = "Dat klopt!"
+            }else{
+                this.popupProperties.antwoord = "Helaas!"
+            }
+            this.popupShow = true;
+        },
+        gekozen(){
+            this.popupShow = false
+            this.keuzeGemaakt = true
+        },
+        sendInfo(){
+            console.log("sending info")
+            this.$emit('userInput', 'Vraag2', this.antwoord)
         }
     },
     created(){

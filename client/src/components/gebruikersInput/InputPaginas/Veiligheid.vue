@@ -6,8 +6,8 @@
         <div class="paspoort">
             <div class="paspoort-logo flexCenter">Paspoort</div>
             <p class="cad">Control Alt Delete</p>
-            <!-- <img src="../../../assets/Avatar/man/jong.png" alt=""> -->
             <div class="img-container">
+                <!-- <img class="avatar" src="../../../assets/Avatar/man/jong.png" alt=""> -->
                 <img class="avatar" v-bind:src="imgUrl()" alt="">
                 <img v-if="gevoelImg === 1" class="gevoel zeer-veilig slideInImg" src="../../../assets/Avatar/gevoel/zeer-veilig.png" alt="">
                 <img v-if="gevoelImg === 2" class="gevoel tevreden slideInImg" src="../../../assets/Avatar/gevoel/tevreden.png" alt="">
@@ -20,8 +20,8 @@
             <div class="info">
                 <p class="label">Afkomst</p>
                 {{afkomst}}
-                <p class="label">Woonplaats</p>
-                {{woonplaats}}
+                <p class="label">Provincie</p>
+                {{provincie}}
                 <p class="label">Gemaakt op D/M/Y</p>
                 {{gemaakt.getDate()}}/{{gemaakt.getMonth()+1}}/{{gemaakt.getFullYear()}}
                 <p class="label">Leeftijd</p>
@@ -30,7 +30,6 @@
                 {{geslacht}}
             </div>
         </div>
-        <p class="onveiligheid">Onveiligheidsgevoel = {{veiligheidsGevoel}}/10</p>
         <div class="sliderBorder">
          <input @change="handleChange" class="slider" type="range" min="1" max="10" v-model="veiligheidsGevoel">
         </div>
@@ -48,11 +47,11 @@ export default {
     props:['userInfo'],
     data(){
         return{
-            avatarPath: this.userInfo.avatarPath,
-            leeftijd: this.userInfo.leeftijd,
-            woonplaats: this.userInfo.woonplaats,
-            geslacht: this.userInfo.geslacht,
-            afkomst: this.userInfo.afkomst,
+            avatarPath: this.userInfo.AvatarPath,
+            leeftijd: this.userInfo.Leeftijd,
+            provincie: this.userInfo.Provincie,
+            geslacht: this.userInfo.Geslacht,
+            afkomst: this.userInfo.Afkomst,
             veiligheidsGevoel: 1,
             gevoelImg: 1,
             flag: false,
@@ -179,6 +178,7 @@ export default {
 </script>
 <style scoped>
 .paspoort{
+    margin-bottom: 70px;
     width: 600px;
     height: 350px;
     background: radial-gradient(circle farthest-side, #ddf2d1,#D0D8E0);

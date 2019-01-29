@@ -4,33 +4,40 @@
         <router-view 
             class="view" 
             v-on:userInput='userInput'
+            v-on:showDatabase='showDatabase'
             v-bind:userInfo='userInfo'
+            v-if="!dataBase"
         >
         </router-view>
      </transition>
+     <PostComponent
+        v-if="dataBase"
+     ></PostComponent>
   </div>
 </template>
 
 <script>
+import PostComponent from './components/PostComponent.vue'
 
 export default {
+
   name: 'app',
   data(){
 	  return{
-		// startQuiz : false,
         input: false,
         dataBase: false,
         userInfo:{
-                geslacht:'',
-                woonplaats: '',
-                avatarPath: '',
-                leeftijd:'',
-                afkomst:'',
-                veiligheidsGevoel: '',
+                // geslacht:'',
+                // woonplaats: '',
+                // avatarPath: '',
+                // leeftijd:'',
+                // afkomst:'',
+                // veiligheidsGevoel: '',
             }
 	  }
   },
   components: {
+      PostComponent
   },
   methods:{
 	  startQuiz(){
@@ -42,13 +49,13 @@ export default {
     },
     showDatabase(){
       setTimeout(()=>{
-			  this.startDone = true
 			  document.querySelector("body").style.background = '#023274'
 			  this.dataBase = true
 		  },2000)
     },
     userInput(property, info){
         this.userInfo[property] = info
+        console.log(this.userInfo)
     }
   },
 }
@@ -58,7 +65,7 @@ export default {
 /* Global elements styling 
 ################################*/
 body{
-  background: #38a3d1;
+  background: black;
   overflow: hidden;
   margin: 0;
   transition: 2s;
@@ -117,6 +124,12 @@ svg > path{
 	align-items: center;
 	flex-direction: column;
 }
+.flexAround{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+}
 .offsetTop{
 	margin-top: 30px;
 }
@@ -149,6 +162,45 @@ button:hover{
   background: #023274;
 }
 
+.sliderBorder{
+  bottom: 110px;
+  padding: 5px;
+  border: solid white 5px;
+  border-radius: 40px;
+  margin-top: 100px;
+  position: fixed;
+  animation: slideIn 3s;
+}
+/* Custom Slider */
+.slider {
+  -webkit-appearance: none;
+  width: 500px;
+  height: 50px;
+  /* background: #d3d3d3; */
+  background-color: transparent;
+  background-image: linear-gradient(to right, green , red);
+  outline: none;
+  opacity: 0.7;
+  margin: 3px 3px 0 3px;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 30px;
+  padding-bottom: 1px;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #bf975a;
+  cursor: pointer;
+}
 
 
 
@@ -156,6 +208,8 @@ button:hover{
 /* Page components global elements 
 ################################*/
 .tekst{
+    position: fixed;
+    top: 0;
     margin: 10px;
     color: white;
     background: rgba(0,0,0,.4);
@@ -164,6 +218,7 @@ button:hover{
     margin: auto;
     border-radius: 0 0 20px 20px;
     animation: slideInTekst 2s forwards;
+    max-width: 800px;
 }
 .wrapper{
     padding: 80px 50px;

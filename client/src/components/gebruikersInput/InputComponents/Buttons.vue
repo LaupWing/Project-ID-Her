@@ -48,6 +48,10 @@ export default {
 button{
     width: 100px;
 }
+.button1{
+    background:#023274; 
+    color: #bf975a;
+}
 .button1:hover{
     background: #bf975a;
     color: #023274;

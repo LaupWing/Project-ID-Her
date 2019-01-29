@@ -2,8 +2,8 @@
   <div class="container">
     <h1>Insert your post</h1>
     <div class="create-post">
-      <label for="create-woonplaats">Uw woonplaats</label>
-      <input type="text" id="create-woonplaats" v-model="woonplaats">
+      <label for="create-provincie">Uw provincie</label>
+      <input type="text" id="create-provincie" v-model="provincie">
       <br>
       <label for="create-geslacht">Uw Geslacht</label>
       <input type="text" id="create-geslacht" v-model="geslacht">
@@ -16,6 +16,18 @@
       <br>
       <label for="create-veilig">Uw Veiligheidsgevoel</label>
       <input type="text" id="create-veilig" v-model="veilig">
+      <br>
+      <label for="vraag1">Vraag 1</label>
+      <input type="text" id="vraag1" v-model="vraag1">
+      <br>
+      <label for="vraag2">Vraag 2</label>
+      <input type="text" id="vraag2" v-model="vraag2">
+      <br>
+      <label for="vraag3">Vraag 3</label>
+      <input type="text" id="vraag3" v-model="vraag3">
+      <br>
+      <label for="vraag4">Vraag 4</label>
+      <input type="text" id="vraag4" v-model="vraag4">
       <br>
       <button class="button2" @click="createPost">Post</button>
     </div>
@@ -30,11 +42,15 @@
         v-on:dblclick="deletePost(post._id)"
       >
         {{`${post.gemaakt.getDate()}/${post.gemaakt.getMonth()+1}/${post.gemaakt.getFullYear()}`}}
-        <p class="text">Woonplaats: {{post.woonplaats}}</p>
+        <p class="text">Woonplaats: {{post.provincie}}</p>
         <p>Afkomst: {{post.afkomst}}</p>
         <p>Geslacht: {{post.geslacht}}</p>
         <p>Leeftijd: {{post.leeftijd}}</p>
         <p>Veiligheidsgevoel: {{post.veilig}}</p>
+        <p>Vraag1: {{post.vraag1}}</p>
+        <p>Vraag2: {{post.vraag2}}</p>
+        <p>Vraag3: {{post.vraag3}}</p>
+        <p>Vraag4: {{post.vraag4}}</p>
       </div>
     </div>
   </div>
@@ -48,17 +64,22 @@ export default {
   data(){
     return{
       posts:[],
-      woonplaats:'',
+      provincie:'',
       veilig: '',
       afkomst: '',
       error: '',
       geslacht: '',
-      leeftijd:''
+      leeftijd:'',
+      vraag1: '',
+      vraag2: '',
+      vraag3: '',
+      vraag4: '',
     }
   },
   async created(){
     try {
       this.posts = await PostService.getPosts();
+      console.log(this.posts)
     }catch(err){
       this.error = err.message;
     }
@@ -66,7 +87,7 @@ export default {
   },
   methods:{
     async createPost(){
-      await PostService.insertPost(this.woonplaats, this.veilig, this.afkomst, this.leeftijd, this.geslacht)
+      await PostService.insertPost(this.provincie, this.veilig, this.afkomst, this.leeftijd, this.geslacht, this.vraag1, this.vraag2,this.vraag3,this.vraag4,)
       this.posts = await PostService.getPosts();
     },
     async deletePost(id){
