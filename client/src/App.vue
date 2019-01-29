@@ -4,6 +4,7 @@
         <router-view 
             class="view" 
             v-on:userInput='userInput'
+            v-on:inputDone='inputDone'
             v-on:showDatabase='showDatabase'
             v-bind:userInfo='userInfo'
             v-if="!dataBase"
@@ -18,6 +19,7 @@
 
 <script>
 import PostComponent from './components/PostComponent.vue'
+import PostService from './PostService.js'
 
 export default {
 
@@ -33,7 +35,7 @@ export default {
                 // leeftijd:'',
                 // afkomst:'',
                 // veiligheidsGevoel: '',
-            }
+            },
 	  }
   },
   components: {
@@ -56,7 +58,23 @@ export default {
     userInput(property, info){
         this.userInfo[property] = info
         console.log(this.userInfo)
-    }
+    },
+    inputDone(){
+        console.log(this.userInfo)
+        this.createPost()
+    },
+    async createPost(){
+      await PostService.insertPost(
+          this.userInfo.Provincie, 
+          this.userInfo.veiligheidsGevoel, 
+          this.userInfo.Afkomst, 
+          this.userInfo.Leeftijd, 
+          this.userInfo.Geslacht, 
+          this.userInfo.Vraag1, 
+          this.userInfo.Vraag2,
+          this.userInfo.Vraag3,
+          this.userInfo.Vraag4,)
+    },
   },
 }
 </script>

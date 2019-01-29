@@ -15,27 +15,29 @@ import Adres from './components/gebruikersInput/InputPaginas/Adres.vue'
 import Veilig from './components/gebruikersInput/InputPaginas/Veiligheid.vue'
 import Vraag1 from './components/gebruikersInput/InputPaginas/Vraag1.vue'
 import Vraag2 from './components/gebruikersInput/InputPaginas/Vraag2.vue'
+import PolitieIntro from './components/gebruikersInput/InputPaginas/Politie-intro.vue'
 import Vraag3 from './components/gebruikersInput/InputPaginas/Vraag3.vue'
 import Vraag4 from './components/gebruikersInput/InputPaginas/Vraag4.vue'
-import PolitieIntro from './components/gebruikersInput/InputPaginas/Politie-intro.vue'
+import Resultaten from './components/gebruikersInput/InputPaginas/Resultaten.vue'
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 
 const routes = [
     {path: '/', component: StartScherm},
+    {path: '/intro1', component: Intro1},
+    {path: '/intro2', component: Intro2},
+    {path: '/intro3', component: Intro3},
     {path: '/geslacht', component: ManOfVrouw},
     {path: '/leeftijdAfkomst', component: LeeftijdAfkomst},
     {path: '/adres', component: Adres},
     {path: '/veilig', component: Veilig},
     {path: '/vraag1', component: Vraag1},
     {path: '/vraag2', component: Vraag2},
+    {path: '/politie-intro', component: PolitieIntro},
     {path: '/vraag3', component: Vraag3},
     {path: '/vraag4', component: Vraag4},
-    {path: '/politie-intro', component: PolitieIntro},
-    {path: '/intro1', component: Intro1},
-    {path: '/intro2', component: Intro2},
-    {path: '/intro3', component: Intro3},
+    {path: '/resultaten', component: Resultaten},
 ]
 
 const router = new VueRouter({

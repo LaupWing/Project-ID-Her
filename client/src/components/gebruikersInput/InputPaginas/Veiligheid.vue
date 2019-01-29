@@ -161,13 +161,8 @@ export default {
             }
         },
         inputCompleted(){
-            this.$el.querySelector('.tekst').classList.add('slidingOutTop')
-            this.$el.querySelector('button').classList.add('slidingOutTop')
-            this.$el.querySelector('.sliderBorder').classList.add('slidingOutTop')
-            this.$el.querySelector('.onveiligheid').classList.add('slidingOutTop')
-            this.$el.querySelector('.paspoort').classList.add('slidingOutTop')
-            this.$emit('nextInput')
-            this.$emit('inputUser', 'veiligheidsGevoel', this.veiligheidsGevoel)
+            this.$emit('userInput', 'veiligheidsGevoel', this.veiligheidsGevoel)
+            this.$emit('inputDone')
         }
     },
     created(){
