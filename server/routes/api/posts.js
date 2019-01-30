@@ -13,7 +13,7 @@ router.get('/', async (req, res)=>{
 router.post('/', async (req, res)=>{
     const posts = await loadPostCollection();
     await posts.insertOne({
-        woonplaats: req.body.woonplaats,
+        provincie: req.body.provincie,
         veilig: req.body.veilig,
         afkomst: req.body.afkomst,
         leeftijd: req.body.leeftijd,
@@ -22,6 +22,7 @@ router.post('/', async (req, res)=>{
         vraag2: req.body.vraag2,
         vraag3: req.body.vraag3,
         vraag4: req.body.vraag4,
+        avatarpath: req.body.avatarpath,
         gemaakt: new Date()
     });
     res.status(201).send()

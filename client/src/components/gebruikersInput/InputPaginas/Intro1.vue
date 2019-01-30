@@ -1,7 +1,7 @@
 <template>
     <div class="flexCenter">
         <div class="tekst">
-            <h2>Dat de politie in Amerika, burgers op hun etnische afkomst beoordelen weet ondertussen bijna iedereen al</h2>
+            <h2>In Amerika worden mensen door de politie bevooroordeeld op grond van hun afkomst. Dit is ondertussen algemeen bekend</h2>
         </div>
         <div class="img-container">
             <img class="img1" src="../../../assets/intro/intro1/murderdeByPolice.jpg" alt="">

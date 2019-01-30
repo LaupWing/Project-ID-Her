@@ -21,7 +21,7 @@ class PostService{
 		})
 	}
     // Add Post
-	static insertPost(provincie, veilig, afkomst, leeftijd, geslacht, vraag1, vraag2, vraag3, vraag4){
+	static insertPost(provincie, veilig, afkomst, leeftijd, geslacht, vraag1, vraag2, vraag3, vraag4, avatarpath){
 		return axios.post(url,{
 			provincie,
 			veilig,
@@ -31,7 +31,8 @@ class PostService{
             vraag1,
             vraag2,
             vraag3,
-            vraag4
+            vraag4,
+            avatarpath
 		})
 	}
 	static deletePost(id){

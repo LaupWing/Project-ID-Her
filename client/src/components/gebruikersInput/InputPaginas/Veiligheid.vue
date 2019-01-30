@@ -1,12 +1,12 @@
 <template>
     <div class="veiligheid flexCenter">
         <div class="tekst">
-            <h2>Hoe onveilig voel jij je rondom poltie-agenten?</h2>
+            <h2>Hoe veilig voel jij je rondom poltie-agenten?</h2>
         </div>
         <div class="paspoort">
             <div class="paspoort-logo flexCenter">Paspoort</div>
             <p class="cad">Control Alt Delete</p>
-            <div class="img-container">
+            <div class="img-container ten">
                 <!-- <img class="avatar" src="../../../assets/Avatar/man/jong.png" alt=""> -->
                 <img class="avatar" v-bind:src="imgUrl()" alt="">
                 <img v-if="gevoelImg === 1" class="gevoel zeer-veilig slideInImg" src="../../../assets/Avatar/gevoel/zeer-veilig.png" alt="">
@@ -15,7 +15,7 @@
                 <img v-if="gevoelImg === 4" class="gevoel nerveus slideInImg" src="../../../assets/Avatar/gevoel/nerveus.png" alt="">
                 <img v-if="gevoelImg === 5" class="gevoel angstig slideInImg" src="../../../assets/Avatar/gevoel/angstig.png" alt="">
                 <img v-if="gevoelImg === 6" class="gevoel zeer-angstig slideInImg" src="../../../assets/Avatar/gevoel/zeer-angstig.png" alt="">
-                <p class="veiligheid">Onveiligheidsgevoel: {{veiligheidsGevoel}}</p>
+                <p class="veiligheid">Veiligheidsgevoel: {{veiligheidsGevoel}}</p>
             </div>
             <div class="info">
                 <p class="label">Afkomst</p>
@@ -53,49 +53,49 @@ export default {
             geslacht: this.userInfo.Geslacht,
             afkomst: this.userInfo.Afkomst,
             veiligheidsGevoel: 1,
-            gevoelImg: 1,
+            gevoelImg: 6,
             flag: false,
             gemaakt: new Date(),
             kleur:[
                 {
                     onveilig:1,
-                    color: 'one'
+                    color: 'ten'
                 },
                 {
                     onveilig:2,
-                    color: 'two'
-                },
-                {
-                    onveilig:3,
-                    color: 'three'
-                },
-                {
-                    onveilig:4,
-                    color: 'four'
-                },
-                {
-                    onveilig:5,
-                    color: 'five'
-                },
-                {
-                    onveilig:6,
-                    color: 'six'
-                },
-                {
-                    onveilig:7,
-                    color: 'seven'
-                },
-                {
-                    onveilig:8,
-                    color: 'eight'
-                },
-                {
-                    onveilig:9,
                     color: 'nine'
                 },
                 {
+                    onveilig:3,
+                    color: 'eight'
+                },
+                {
+                    onveilig:4,
+                    color: 'seven'
+                },
+                {
+                    onveilig:5,
+                    color: 'six'
+                },
+                {
+                    onveilig:6,
+                    color: 'five'
+                },
+                {
+                    onveilig:7,
+                    color: 'four'
+                },
+                {
+                    onveilig:8,
+                    color: 'three'
+                },
+                {
+                    onveilig:9,
+                    color: 'two'
+                },
+                {
                     onveilig:10,
-                    color: 'ten'
+                    color: 'one'
                 },
             ],
             colorCode: 'rgba(9, 123, 0,.6)'
@@ -143,21 +143,21 @@ export default {
         changeGevoel(){
             const n = this.veiligheidsGevoel;
             if(n < 2){
-                this.gevoelImg = 1
+                this.gevoelImg = 6
             }else if(n >= 2 && n < 3){
-                this.gevoelImg = 2
-            }
-            else if(n >= 3 && n < 5){
-                this.gevoelImg = 3
-            }
-            else if(n >= 5 && n < 7){
-                this.gevoelImg = 4
-            }
-            else if(n >= 7 && n <= 8){
                 this.gevoelImg = 5
             }
+            else if(n >= 3 && n < 5){
+                this.gevoelImg = 4
+            }
+            else if(n >= 5 && n < 7){
+                this.gevoelImg = 3
+            }
+            else if(n >= 7 && n <= 8){
+                this.gevoelImg = 2
+            }
             else{
-                this.gevoelImg = 6
+                this.gevoelImg = 1
             }
         },
         inputCompleted(){
@@ -339,7 +339,7 @@ img.neutraal{
   height: 50px;
   /* background: #d3d3d3; */
   background-color: transparent;
-  background-image: linear-gradient(to right, green , red);
+  background-image: linear-gradient(to right, red , green);
   outline: none;
   opacity: 0.7;
   margin: 3px 3px 0 3px;

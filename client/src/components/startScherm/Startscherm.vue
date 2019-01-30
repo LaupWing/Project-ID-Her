@@ -28,25 +28,26 @@
 		</div>
 		<button @click="start">???</button>
     <img @click="show" class="politie-auto" src="../../assets/politie-auto.png" alt="">
-    <div class="grass"></div>
 	 </div>
 </template>
 <script>
+import PostService from '../../PostService.js'
 import Logo from './startschermComponents/logo.vue'
 export default {
-	name: 'Startscherm',
+    name: 'Startscherm',
+    props:[''],
 	components:{
 		Logo
 	},
 	data(){
 		return{
-
+            posts:[],
+            char:[]
 		}
   },
   methods:{
     start(){
       this.$el.querySelector('.politie-auto').style.opacity = 0;
-      this.$el.querySelector('.grass').style.opacity = 0;
       setTimeout( () => this.$router.push({ path: '/intro1'}), 250);
     },
     show(){
@@ -56,7 +57,33 @@ export default {
       this.$el.querySelector('svg').classList.add("slidingOutTop")
       this.$el.querySelector('button').classList.add("slidingOutTop")
       this.$emit('showDatabase')
+    },
+    splitChar(){
+        const aantal = this.posts.length
+        const aantalString = aantal.toString()
+        for (var i = 0; i < aantalString.length; i++) {
+            this.char.push(aantalString.charAt(i))
+        }
+        this.setNumber()
+    },
+    setNumber(){
+        const allNumbers = this.$el.querySelectorAll('.cijfer')
+        let counter = 0;
+        const start = allNumbers.length - this.char.length
+        console.log(start)
+        for (let index = start; index < allNumbers.length; index++) {
+            allNumbers[index].textContent = this.char[counter]
+            counter++
+        }
     }
+  },
+  async created(){
+        try {
+            this.posts = await PostService.getPosts();
+            this.splitChar()
+        }catch(err){
+            this.error = err.message;
+        }
   }
 }
 </script>
@@ -65,18 +92,11 @@ export default {
   width: 140px;
   position: fixed;
   left: -40vw;
-  bottom: 20px;
+  bottom: 0px;
   transition: .25s;
   animation: carRide 15s infinite;
 }
-.grass{
-  width: 100%;
-  height: 20px;
-  background:green;
-  position: fixed;
-  bottom: 0;
-  transition: .25s;
-}
+
 .logo{
   animation: slideIn 2s;
 }

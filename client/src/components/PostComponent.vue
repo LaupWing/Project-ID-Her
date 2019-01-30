@@ -29,6 +29,9 @@
       <label for="vraag4">Vraag 4</label>
       <input type="text" id="vraag4" v-model="vraag4">
       <br>
+      <label for="avatarpath">Avatarpath</label>
+      <input type="text" id="avatarpath" v-model="avatarpath">
+      <br>
       <button class="button2" @click="createPost">Post</button>
     </div>
     <hr>
@@ -51,6 +54,7 @@
         <p>Vraag2: {{post.vraag2}}</p>
         <p>Vraag3: {{post.vraag3}}</p>
         <p>Vraag4: {{post.vraag4}}</p>
+        <p>Avatarpath: {{post.avatarpath}}</p>
       </div>
     </div>
   </div>
@@ -74,6 +78,7 @@ export default {
       vraag2: '',
       vraag3: '',
       vraag4: '',
+      avatarpath: ''
     }
   },
   async created(){
@@ -87,7 +92,7 @@ export default {
   },
   methods:{
     async createPost(){
-      await PostService.insertPost(this.provincie, this.veilig, this.afkomst, this.leeftijd, this.geslacht, this.vraag1, this.vraag2,this.vraag3,this.vraag4,)
+      await PostService.insertPost(this.provincie, this.veilig, this.afkomst, this.leeftijd, this.geslacht, this.vraag1, this.vraag2,this.vraag3,this.vraag4,this.avatarpath)
       this.posts = await PostService.getPosts();
     },
     async deletePost(id){

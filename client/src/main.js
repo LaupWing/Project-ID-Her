@@ -21,6 +21,14 @@ import Vraag4 from './components/gebruikersInput/InputPaginas/Vraag4.vue'
 import Resultaten from './components/gebruikersInput/InputPaginas/Resultaten.vue'
 Vue.config.productionTip = false
 
+// ResultatenComponents
+import StartResultaat from './components/gebruikersInput/InputPaginas/ResultatenComponents/Start-resultaat.vue'
+import DelenResultaat from './components/gebruikersInput/InputPaginas/ResultatenComponents/Delen-resultaat.vue'
+import RecentResultaat from './components/gebruikersInput/InputPaginas/ResultatenComponents/Recent-resultaat.vue'
+import VeiligResultaat from './components/gebruikersInput/InputPaginas/ResultatenComponents/Veilig-resultaat.vue'
+import VragenResultaat from './components/gebruikersInput/InputPaginas/ResultatenComponents/Vragen-resultaat.vue'
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -37,7 +45,33 @@ const routes = [
     {path: '/politie-intro', component: PolitieIntro},
     {path: '/vraag3', component: Vraag3},
     {path: '/vraag4', component: Vraag4},
-    {path: '/resultaten', component: Resultaten},
+    {
+        path: '/resultaten', 
+        component: Resultaten,
+        children:[
+            {
+                path: '',
+                component: StartResultaat
+            },
+            {
+                path: 'deel-resultaat',
+                component: DelenResultaat
+            },
+            {
+                path: 'recent-resultaat',
+                component: RecentResultaat           
+            },
+            {
+                path: 'vragen-resultaat',
+                component: VragenResultaat           
+            },
+            {
+                path: 'veilig-resultaat',
+                component: VeiligResultaat           
+            },
+        ]
+    
+    },
 ]
 
 const router = new VueRouter({

@@ -1,7 +1,7 @@
 <template>
     <div class="flexCenter">
-        <div class="tekst">
-            <h2>Maar zoiets gebeurt toch niet in Nederland? Kom achter de harde realiteit door middel van een quiz. Kom er ook achter wat andere mensen over de politie denken in Nederland.</h2>
+        <div class="tekst2">
+            <h2>Maar komt etnisch profileren ook voor in Nederland? Speel de quiz om erachter te komen wat de realiteit is, en wat anderen over dit onderwerp denken.</h2>
         </div>
         <buttons 
             class="buttons flexCenter"
@@ -33,7 +33,24 @@ export default {
 }
 </script>
 <style scoped>
-.tekst{
-    max-width: 500px;
+.buttons{
+    bottom: 120px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: fixed;
+    transform: translate(0,100vh);
+    animation: slideIn 3s forwards;
+    animation-delay: 8s;
+}
+.tekst2{
+    opacity: 0;
+    animation: slide 5s forwards;
+    animation-delay: 2s;
+    width: 600px;
+}
+@keyframes slide {
+    from{transform: translate(0,50px); opacity: 0;}
+    to{transform: translate(0,0); opacity: 1;}
 }
 </style>

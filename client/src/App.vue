@@ -73,7 +73,8 @@ export default {
           this.userInfo.Vraag1, 
           this.userInfo.Vraag2,
           this.userInfo.Vraag3,
-          this.userInfo.Vraag4,)
+          this.userInfo.Vraag4,
+          this.userInfo.AvatarPath,)
     },
   },
 }
