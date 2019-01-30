@@ -56,7 +56,7 @@ export default {
             pageChoices:{
                 values: ['Klaar'],
                 btnClass: 'button1',
-                next: '/vraag2',
+                next: '/vraag1-artikel',
                 eventFunction: this.showPopup,
                 btnCls: 'button2'
             },

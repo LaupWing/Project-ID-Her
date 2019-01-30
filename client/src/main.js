@@ -14,6 +14,7 @@ import LeeftijdAfkomst from './components/gebruikersInput/InputPaginas/leeftijdA
 import Adres from './components/gebruikersInput/InputPaginas/Adres.vue'
 import Veilig from './components/gebruikersInput/InputPaginas/Veiligheid.vue'
 import Vraag1 from './components/gebruikersInput/InputPaginas/Vraag1.vue'
+import Vraag1Artikel from './components/gebruikersInput/InputPaginas/Vraag1-Artikel.vue'
 import Vraag2 from './components/gebruikersInput/InputPaginas/Vraag2.vue'
 import PolitieIntro from './components/gebruikersInput/InputPaginas/Politie-intro.vue'
 import Vraag3 from './components/gebruikersInput/InputPaginas/Vraag3.vue'
@@ -41,6 +42,7 @@ const routes = [
     {path: '/adres', component: Adres},
     {path: '/veilig', component: Veilig},
     {path: '/vraag1', component: Vraag1},
+    {path: '/vraag1-artikel', component: Vraag1Artikel},
     {path: '/vraag2', component: Vraag2},
     {path: '/politie-intro', component: PolitieIntro},
     {path: '/vraag3', component: Vraag3},
