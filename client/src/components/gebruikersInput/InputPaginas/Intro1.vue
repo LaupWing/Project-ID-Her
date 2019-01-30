@@ -63,6 +63,11 @@ img{
     animation: slide 2s forwards;
     animation-delay: 9s;
 }
+.buttons{
+    animation: slideIn 2s forwards;
+    animation-delay: 11s;
+    transform: translate(0,100vh);
+}
 @keyframes slide{
     from{transform: translate(0,50px); opacity: 0;}
     to{transform: translate(0,0); opacity: 1;}

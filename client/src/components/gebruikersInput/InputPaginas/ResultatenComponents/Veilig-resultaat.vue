@@ -1,29 +1,44 @@
 <template>
     <div>
-        <select name="provincie" id="provincie" @change="changeProvincie">
-            <option value="Alle">Alle Provincies</option>
-            <option
-                v-for="(p, index) in provincies" 
-                v-bind:key="'A'+index"
-                :value="p"
-            >
-            {{p}}
-            </option>
-        </select>
-        <select name="nationaliteiten" id="nationaliteiten" @change="changeNationaliteit">
-            <option value="Alle">Alle Nationaliteiten</option>
-            <option 
-                v-for="(n, index) in nationaliteiten" 
-                v-bind:key="index"
-                :value="n"
-            >
-                {{n}}
-            </option>
-        </select>
+        <div class="filteropties">
+            <div class="flexCenter">
+                <p>Gemiddelde</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider2 round"></span>
+                </label>
+            </div>
+            <div class="flexCenter">
+                <p>Provinicie</p>
+                <select name="provincie" id="provincie" @change="changeProvincie">
+                    <option value="Alle">Alle Provincies</option>
+                    <option
+                        v-for="(p, index) in provincies" 
+                        v-bind:key="'A'+index"
+                        :value="p"
+                    >
+                    {{p}}
+                    </option>
+                </select>
+            </div>
+            <div class="flexCenter">
+                <p>Afkomst</p>
+                <select name="nationaliteiten" id="nationaliteiten" @change="changeNationaliteit">
+                    <option value="Alle">Alle Afkomsten</option>
+                    <option 
+                        v-for="(n, index) in nationaliteiten" 
+                        v-bind:key="index"
+                        :value="n"
+                    >
+                        {{n}}
+                    </option>
+                </select>
+            </div>
+        </div>
         <div class="table-container">
             <table>
                 <tr class="headers">
-                    <th>Nationaliteit</th>
+                    <th>Afkomst</th>
                     <th>Geslacht</th>
                     <th>Leeftijd</th>
                     <th>Provincie</th>
@@ -107,6 +122,12 @@ export default {
 }
 </script>
 <style scoped>
+.filteropties{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: #bf975a;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -126,5 +147,73 @@ td, th {
 }
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+select{
+    padding: 5px;
+    border-radius: 10px;
+    width: 150px;
+}
+
+
+/* Custom Slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider2 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider2 {
+  background-color: #bf975a;;
+}
+
+/* input:focus + .slider2 {
+  box-shadow: 0 0 1px #2196F3;
+} */
+
+input:checked + .slider2:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider2.round {
+  border-radius: 34px;
+}
+
+.slider2.round:before {
+  border-radius: 50%;
 }
 </style>

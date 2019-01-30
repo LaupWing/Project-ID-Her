@@ -114,7 +114,7 @@ export default {
         
     },
     created(){
-        // document.querySelector("body").style.background = '#38a3d1'
+        document.querySelector("body").style.background = '#023274'
         console.log(this.userInfo)
     },
   
