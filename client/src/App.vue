@@ -149,6 +149,12 @@ svg > path{
 	align-items: center;
 	flex-direction: column;
 }
+.flexBetween{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+}
 .offsetTop{
 	margin-top: 30px;
 }

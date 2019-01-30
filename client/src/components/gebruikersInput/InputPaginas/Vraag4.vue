@@ -83,7 +83,7 @@ export default {
         },
         sendInfo(){
             console.log("sending info")
-            this.$emit('userInput', 'Vraag4', this.antwoord)
+            this.$emit('userInput', 'Vraag4', this.hoeveel)
         },
         plus(){
             if(this.hoeveel <100){

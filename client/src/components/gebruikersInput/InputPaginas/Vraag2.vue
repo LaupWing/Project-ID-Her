@@ -86,7 +86,7 @@ export default {
             this.keuzeGemaakt = true
         },
         sendInfo(){
-            this.$emit('userInput', 'Vraag2', this.antwoord)
+            this.$emit('userInput', 'Vraag2', this.hoeveel)
         },
         plus(){
             if(this.hoeveel <100){

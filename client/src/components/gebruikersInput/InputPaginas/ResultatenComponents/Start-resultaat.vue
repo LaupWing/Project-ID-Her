@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Resultaten Pagina</h2>
-        <p>Op deze pagina kun je het laatste nieuws over etnische profileren vinden en de resultaten van andere mensen. Je heb ook de mogelijkheid om de website te delen om awereness te creëren. Hieronder staat uitleg over de verschillenden menu items dat je hierboven ziet.</p>
+        <p>Op deze pagina kun je het laatste nieuws over etnische profileren vinden en de resultaten van andere mensen. Je heb ook de mogelijkheid om de website te delen om awereness te creëren. Hieronder staat uitleg over de verschillende menu items dat je hierboven ziet.</p>
         <div class="uitleg">
             <p><span>Recent: </span>Recente nieuws op het gebied van etnische profileren bij de politie</p>
         </div>
